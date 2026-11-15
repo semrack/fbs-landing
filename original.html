@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Исходный лендинг FBS (копия для сравнения)</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:'Inter',-apple-system,'Segoe UI',sans-serif;color:#1D1F20;background:#fff;font-size:16px;line-height:1.5}
+a{color:#1762EF}
+h1,h2{margin:0;letter-spacing:-.01em}
+p{margin:0}
+.o-top{max-width:1180px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;padding:16px 24px;border-bottom:1px solid #EEF0F3}
+.o-logo{display:flex;align-items:center;gap:12px}
+.o-logo b{font-weight:800;font-size:24px;background:linear-gradient(90deg,#3562F1,#A25DE2 50%,#F2326F);-webkit-background-clip:text;background-clip:text;color:transparent}
+.o-logo span{font-weight:700;padding-left:12px;border-left:1px solid #D9DCE1}
+.o-nav{display:flex;flex-wrap:wrap;align-items:center;gap:20px;font-size:15px}
+.o-nav a{color:#1D1F20;text-decoration:none}
+.o-btn{display:inline-flex;align-items:center;justify-content:center;background:#1762EF;color:#fff!important;text-decoration:none;font-weight:600;font-size:17px;padding:14px 24px;border-radius:8px;min-height:44px}
+.o-btn.sm{font-size:15px;padding:10px 18px}
+.o-btn.ghost{background:#fff;color:#1D1F20!important;border:1px solid #D9DCE1}
+.o-wrap{max-width:1000px;margin:0 auto;padding:0 24px}
+.o-center{text-align:center}
+.o-hero{padding-bottom:56px}
+.o-hero .o-wrap{padding-top:56px}
+.o-hero h1{font-size:clamp(28px,3.2vw,40px);line-height:1.15;font-weight:700}
+.o-hero h1 span{color:#1762EF}
+.o-sub{color:#5C6470;font-size:17px;margin:14px auto 0;max-width:720px}
+.o-ctas{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:28px}
+.o-micro{display:block;color:#5C6470;font-size:14px;margin-top:14px}
+.o-shot{margin:32px auto 0;border:1px solid #E6E8EC;border-radius:16px;overflow:hidden;box-shadow:0 20px 50px -30px rgba(29,31,32,.35);background:#F7F8FA}
+.o-shot img{display:block;width:100%;height:auto;aspect-ratio:2200/1246}
+.o-sec{padding:72px 0}
+.o-sec.alt{background:#F7F8FA}
+.o-sec h2{font-size:clamp(24px,2.6vw,30px);line-height:1.2;font-weight:700;margin-top:8px}
+.o-eyebrow{color:#1762EF;font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:.06em}
+.o-cap{font-weight:600;font-size:17px;margin-top:20px}
+.o-big{font-size:40px;font-weight:800;color:#1762EF}
+.o-three{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:16px;margin-top:28px}
+.o-three div{background:#fff;border-radius:14px;padding:20px;display:flex;flex-direction:column;gap:6px;border:1px solid #EEF0F3}
+.o-three span{color:#5C6470;font-size:15px}
+.o-card{display:inline-flex;flex-direction:column;align-items:center;gap:4px;margin-top:24px;padding:24px;border:1px solid #E6E8EC;border-radius:16px;box-shadow:0 10px 30px -20px rgba(29,31,32,.3)}
+.o-foot{background:linear-gradient(180deg,#F4EEFF,#EEF3FF);padding:28px 24px;text-align:center;color:#5C6470;font-size:14px}
+@media (max-width:640px){.o-nav a:not(.o-btn){display:none}.o-sec{padding:52px 0}.o-ctas .o-btn{width:100%}}
+
+.cbar{position:sticky;top:0;z-index:50;background:#1D1F20;color:#fff;font:500 14px/1.3 'Inter',-apple-system,'Segoe UI',sans-serif;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 16px;min-height:52px}
+.cbar a{color:#fff;text-decoration:none;display:inline-flex;align-items:center;gap:6px;min-height:36px}
+.cbar a:hover{text-decoration:underline;color:#fff}
+.cbar .t{opacity:.85;text-align:center;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cbar button{font:inherit;font-weight:600;background:#fff;color:#1D1F20;border:none;border-radius:8px;padding:8px 12px;cursor:pointer;min-height:36px;white-space:nowrap}
+.cbar button:focus-visible,.cbar a:focus-visible{outline:3px solid #A25DE2;outline-offset:2px}
+@media (max-width:640px){.cbar .t{display:none}}
+.why-wrap{max-width:1180px;margin:0 auto 28px;padding:0 24px;box-sizing:border-box}
+.why{font-family:'Inter',-apple-system,'Segoe UI',sans-serif;background:#fff;border:1.5px dashed #A25DE2;border-radius:14px;padding:14px 18px;color:#1D1F20;font-size:15px;line-height:1.5;box-shadow:0 10px 28px -18px rgba(162,93,226,.7);max-width:820px;text-align:left}
+.why p{margin:0;color:#1D1F20;font-size:15px}
+.why-label{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.02em;color:#fff;background:#A25DE2;border-radius:6px;padding:3px 9px;margin-bottom:8px}
+.why.growth{border-color:#1762EF}
+.why.growth .why-label{background:#1762EF}
+html.notes-off .why-wrap{display:none}
+</style>
+
+</head>
+<body>
+<div class="cbar" role="navigation" aria-label="Навигация по концепциям">
+  <a href="index.html"><span aria-hidden="true">←</span> Все концепции</a>
+  <span class="t">Исходный лендинг system10x.ru/fbs-a (копия для сравнения)</span>
+  <button type="button" id="notesBtn" aria-pressed="true">Скрыть пояснения</button>
+</div>
+<main>
+<!-- Копия исходного лендинга system10x.ru/fbs-a: тексты и порядок блоков как в оригинале, скриншоты подгружаются с сайта 10X -->
+<section class="o-hero">
+  <header class="o-top">
+    <span class="o-logo"><b>10X</b><span>FBS</span></span>
+    <nav class="o-nav"><a href="#o-tabs">Вкладки</a><a href="#o-more">Что ещё есть</a><a class="o-btn sm" href="#o-access">Получить доступ</a></nav>
+  </header>
+<div class="why-wrap"><aside class="why growth" aria-label="Пояснение к блоку"><b class="why-label">Точка роста</b><p><b>Работает:</b> бесплатный тест и микротекст «срок начнётся после настройки» — сильное снятие риска. <b>Точка роста:</b> заголовок перечисляет функции, а главная выгода «не терять деньги» стоит в подзаголовке. Главная кнопка прокручивает страницу на&nbsp;~10&nbsp;000&nbsp;px вниз, вторая уводит на Rutube.</p></aside></div>
+
+  <div class="o-wrap o-center">
+    <h1>Управляйте продажами FBS на Wildberries: <span>остаток, сроки сборки, маржа, отмены</span></h1>
+    <p class="o-sub">и не теряйте деньги на штрафах и некорректных остатках</p>
+    <div class="o-ctas"><a class="o-btn" href="#o-access">Попробовать 3 дня бесплатно</a><a class="o-btn ghost" href="https://rutube.ru/video/549f67c1ae63e29ba7de07c25fb3e2ba/" rel="noopener">Посмотреть видео, 15 мин</a></div>
+    <p class="o-micro">Срок теста начнётся только после полной настройки — менеджер поможет.</p>
+    <div class="o-shot"><img src="https://system10x.ru/_astro/fbs-summary-top.CIdI1YYM_Z1KFcNJ.webp" alt="Вкладка «Сводка» раздела FBS" loading="eager"></div>
+  </div>
+</section>
+
+<section class="o-sec alt">
+<div class="why-wrap"><aside class="why " aria-label="Пояснение к блоку"><b class="why-label">Что уже работает</b><p>Три сильных тезиса: без доплаты, по API, наглядно. Их стоит поставить рядом с кнопкой — там они снимают сомнения в момент решения. «1 500+ кабинетов» усилит конкретика: кейс или отзыв.</p></aside></div>
+
+  <div class="o-wrap o-center">
+    <p class="o-big">1 500+ кабинетов</p>
+    <p class="o-sub">подключены к Системе 10X</p>
+    <div class="o-three">
+      <div><b>Докупать модуль не надо</b><span>Входит в Систему 10X</span></div>
+      <div><b>Всё по API</b><span>Заполнять руками ничего не нужно</span></div>
+      <div><b>Понятная аналитика</b><span>Что и где сделать — наглядно</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="o-sec" id="o-tabs">
+<div class="why-wrap"><aside class="why growth" aria-label="Пояснение к блоку"><b class="why-label">Точка роста</b><p>«Утренний обход — три минуты» — готовый оффер для первого экрана: короткая выгода во времени, понятная любому селлеру.</p></aside></div>
+
+  <div class="o-wrap o-center">
+    <p class="o-eyebrow">Сводка</p>
+    <h2>Утренний обход — три минуты</h2>
+    <p class="o-sub">По одному числу с каждой вкладки. Плитка кликабельна: нажали — открылась та, где число разобрано.</p>
+    <div class="o-shot"><img src="https://system10x.ru/_astro/fbs-summary-sections.Dar0Sl8z_2kXGuG.webp" alt="Блок «Что происходит по разделам» на вкладке «Сводка»" loading="lazy"></div>
+    <p class="o-cap">Четыре числа сверху — четыре места, где утекают деньги.</p>
+  </div>
+</section>
+
+<section class="o-sec alt">
+<div class="why-wrap"><aside class="why growth" aria-label="Пояснение к блоку"><b class="why-label">Точка роста</b><p>Цифра «≈2,8 млн ₽ в день» больше месячных потерь из следующего блока (≈2,3 млн ₽ за 30 дней). Если согласовать расчёт, вырастет доверие ко всем остальным цифрам.</p></aside></div>
+
+  <div class="o-wrap o-center">
+    <p class="o-eyebrow">Матрица складов</p>
+    <h2>Товар лежит на полке, а покупатель видит «нет в наличии»</h2>
+    <p class="o-sub">Две цифры рядом по каждому товару и складу: что физически есть на ФФ и что видит в наличии WB.</p>
+    <div class="o-shot"><img src="https://system10x.ru/_astro/fbs-matrix.D1CIzntf_245jnJ.webp" alt="Вкладка «Матрица складов»" loading="lazy"></div>
+    <p class="o-cap">857 329 шт не объявлено в WB — это ≈2 837 724 ₽ в день.</p>
+  </div>
+</section>
+
+<section class="o-sec">
+<div class="why-wrap"><aside class="why growth" aria-label="Пояснение к блоку"><b class="why-label">Точка роста</b><p>Самая сильная цифра страницы — 2,3 млн ₽ упущенной выручки — стоит на третьем экране. Её место на первом: она сразу отвечает на «зачем мне это».</p></aside></div>
+
+  <div class="o-wrap o-center">
+    <p class="o-eyebrow">Потери за период</p>
+    <h2>Сколько выручки упущено</h2>
+    <p class="o-sub">Показывает сумму по дням, когда товар простоял в нуле, с учётом сезонности и позиции в аукционе.</p>
+    <div class="o-shot"><img src="https://system10x.ru/_astro/fbs-losses.DxyxHIXa_Za2OmS.webp" alt="Вкладка «Потери за период»" loading="lazy"></div>
+    <p class="o-cap">≈2 346 516 ₽ за 30 дней — по вашей же скорости продаж.</p>
+  </div>
+</section>
+
+<section class="o-sec alt">
+<div class="why-wrap"><aside class="why growth" aria-label="Пояснение к блоку"><b class="why-label">Точка роста</b><p>«Видно, кто косячит» — живой эмоциональный хук. 1,5 млн ₽ здесь — оборот с растущей комиссией, а не потеря; стоит подписать это явно, чтобы цифру не сложили с потерями.</p></aside></div>
+
+  <div class="o-wrap o-center">
+    <p class="o-eyebrow">Заказы</p>
+    <h2>Видно, кто косячит</h2>
+    <p class="o-sub">Очередь и скорость по каждому складу: новое, в сборке, что уехало, скорость сборки и растущая комиссия.</p>
+    <div class="o-shot"><img src="https://system10x.ru/_astro/fbs-orders.BI6ylrcK_24izU8.webp" alt="Вкладка «Заказы»" loading="lazy"></div>
+    <p class="o-cap">1 530 310 ₽ с растущей комиссией — и видно, какой склад их тратит.</p>
+  </div>
+</section>
+
+<section class="o-sec">
+<div class="why-wrap"><aside class="why growth" aria-label="Пояснение к блоку"><b class="why-label">Точка роста</b><p>Хорошая конкретика: сумма, которую можно вернуть. «Заказы», «Комиссия» и «Отмены» говорят об одном — работе фулфилмента — и могут стать одним блоком.</p></aside></div>
+
+  <div class="o-wrap o-center">
+    <p class="o-eyebrow">Комиссия</p>
+    <h2>Заработано скидкой или потеряно штрафами</h2>
+    <p class="o-sub">По каждому складу отдельно.</p>
+    <div class="o-shot"><img src="https://system10x.ru/_astro/fbs-commission.B4IkQjjg_Z2740Q9.webp" alt="Вкладка «Комиссия»" loading="lazy"></div>
+    <p class="o-cap">Можно забрать ещё 400 941 ₽: в лучшую зону попадает 4,5 % заданий.</p>
+  </div>
+</section>
+
+<section class="o-sec alt">
+<div class="why-wrap"><aside class="why growth" aria-label="Пояснение к блоку"><b class="why-label">Точка роста</b><p>Боль «платим за чужие ошибки» сильная. Это третий подряд блок про фулфилмент: объединение с двумя предыдущими сократит страницу без потери смысла.</p></aside></div>
+
+  <div class="o-wrap o-center">
+    <p class="o-eyebrow">Отмены</p>
+    <h2>Сколько отменил фулфилмент и на какой штраф</h2>
+    <p class="o-sub">Разрез по складам показывает, какой фулфилмент не справляется, отменяет и создаёт вам штрафы.</p>
+    <div class="o-shot"><img src="https://system10x.ru/_astro/fbs-cancellations.CJ6hLVN1_GXHWc.webp" alt="Вкладка «Отмены»" loading="lazy"></div>
+    <p class="o-cap">Ваша зона — 80 заданий и штраф 36 576 ₽ из финотчёта.</p>
+  </div>
+</section>
+
+<section class="o-sec">
+<div class="why-wrap"><aside class="why growth" aria-label="Пояснение к блоку"><b class="why-label">Точка роста</b><p>18,5 млн ₽ — замороженный товар, а не потеря. Заголовок-формула «49 % / 9 %» станет понятнее с одной поясняющей фразой.</p></aside></div>
+
+  <div class="o-wrap o-center">
+    <p class="o-eyebrow">Куда везти</p>
+    <h2>Даёт 49 % заказов, а хранит 9 % остатка</h2>
+    <p class="o-sub">Перекос считается в долях, а не в штуках, и донор оставляет запас на свои продажи — в днях.</p>
+    <div class="o-shot"><img src="https://system10x.ru/_astro/fbs-where-to-ship.BOj8_BQz_Z1aW6j1.webp" alt="Вкладка «Куда везти»" loading="lazy"></div>
+    <p class="o-cap">18 528 216 ₽ лежит не на том складе.</p>
+  </div>
+</section>
+
+<section class="o-sec alt">
+<div class="why-wrap"><aside class="why growth" aria-label="Пояснение к блоку"><b class="why-label">Точка роста</b><p>Единственный блок без суммы в рублях. Его можно связать с местом в выдаче: быстрее доставка — выше позиция — больше продаж.</p></aside></div>
+
+  <div class="o-wrap o-center">
+    <p class="o-eyebrow">Путь до ПВЗ</p>
+    <h2>Скорость доставки — то, что реально влияет на аукцион WB</h2>
+    <p class="o-sub">Сравнивайте склады ФФ между собой по скорости доставки в каждом регионе.</p>
+    <div class="o-shot"><img src="https://system10x.ru/_astro/fbs-path-to-pvz.BBdSgOgh_Z1Aw8cJ.webp" alt="Вкладка «Путь до ПВЗ»" loading="lazy"></div>
+    <p class="o-cap">По каждому округу видно, какой склад довозит быстрее.</p>
+  </div>
+</section>
+
+<section class="o-sec">
+<div class="why-wrap"><aside class="why growth" aria-label="Пояснение к блоку"><b class="why-label">Точка роста</b><p>Сильный аргумент для сравнения складов. Но это девятый однотипный блок подряд — к этому месту внимание читателя ниже всего, поэтому важное лучше поднимать выше.</p></aside></div>
+
+  <div class="o-wrap o-center">
+    <p class="o-eyebrow">Маржа</p>
+    <h2>Один товар с разных складов зарабатывает по-разному</h2>
+    <p class="o-sub">Склады различаются обработкой и скоростью сборки, поэтому маржа считается по каждому отдельно.</p>
+    <div class="o-shot"><img src="https://system10x.ru/_astro/fbs-margin.CcZo5_xt_9mYOH.webp" alt="Вкладка «Маржа»" loading="lazy"></div>
+    <p class="o-cap">17,2 % против 25,1 % на FBW — столько стоит скорость.</p>
+  </div>
+</section>
+
+<section class="o-sec alt" id="o-more">
+<div class="why-wrap"><aside class="why growth" aria-label="Пояснение к блоку"><b class="why-label">Точка роста</b><p>Претензии и недосдачи — понятные денежные боли, сейчас они уместились в одну строку. Их стоит поднять в группу «где теряются деньги».</p></aside></div>
+
+  <div class="o-wrap o-center">
+    <h2>И ещё три вкладки</h2>
+    <p class="o-sub">Считают по данным вашего кабинета, как и остальные девять.</p>
+    <div class="o-three">
+      <div><b>Претензии</b><span>что площадка удержала вопреки оферте</span></div>
+      <div><b>Недосдано</b><span>какой товар до склада не доехал</span></div>
+      <div><b>Расходы ФФ</b><span>сколько стоит обработка на каждом складе</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="o-sec" id="o-access">
+<div class="why-wrap"><aside class="why growth" aria-label="Пояснение к блоку"><b class="why-label">Точка роста</b><p>Подключение с менеджером — сильный аргумент. Точки роста: повторить выгоду одной фразой, добавить цену, FAQ и запасной канал помимо Telegram (у 10X уже есть поддержка в MAX).</p></aside></div>
+
+  <div class="o-wrap o-center">
+    <h2>Полный доступ на <span style="color:#1762EF">3 дня</span></h2>
+    <p class="o-sub">Напишите в Telegram — подключим кабинет и настроим.</p>
+    <div class="o-card"><a class="o-btn" href="https://t.me/tenXsupport_bot" rel="noopener">Попробовать 3 дня бесплатно</a><span class="o-micro">Подключение через Telegram-бота поддержки</span></div>
+    <p class="o-micro">Менеджер настроит вместе с вами.</p>
+  </div>
+</section>
+
+</main>
+<footer class="o-foot">Копия страницы <a href="https://system10x.ru/fbs-a" rel="noopener">system10x.ru/fbs-a</a> для сравнения. Скриншоты загружаются с сайта Системы 10X.</footer>
+<script>
+(function(){
+  var off = false;
+  try { off = localStorage.getItem('fbs_notes') === 'off'; } catch (e) {}
+  var q = new URLSearchParams(location.search).get('notes');
+  if (q === '0') off = true; if (q === '1') off = false;
+  var btn = document.getElementById('notesBtn');
+  function apply(){
+    document.documentElement.classList.toggle('notes-off', off);
+    if (btn) { btn.textContent = off ? 'Показать пояснения' : 'Скрыть пояснения'; btn.setAttribute('aria-pressed', String(!off)); }
+  }
+  apply();
+  if (btn) btn.addEventListener('click', function(){ off = !off; try { localStorage.setItem('fbs_notes', off ? 'off' : 'on'); } catch (e) {} apply(); });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Концепция C: аналитика FBS на Wildberries</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap">
+<style>
+:root{--blue:#1762EF;--blue-d:#0F4FC7;--ink:#1D1F20;--muted:#5C6470;--bg2:#F7F8FA;--tint:#EAF1FE;--line:#E6E8EC;--pink:#F2326F;--pink-d:#C21D55;--purple:#A25DE2;--purple-d:#8B45CF;--g1:#3562F1;
+--grad:linear-gradient(90deg,#3562F1,#A25DE2 50%,#F2326F)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;font-family:'Onest','Inter',-apple-system,'Segoe UI',sans-serif;color:var(--ink);background:#fff;font-size:18px;line-height:1.5}
+a{color:var(--blue)}a:hover{color:var(--blue-d)}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--purple);outline-offset:2px;border-radius:6px}
+h1,h2,h3{margin:0;letter-spacing:-.02em}
+p{margin:0}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+.concept{background:var(--ink);color:#fff;font-size:14px;text-align:center;padding:8px 16px}
+.concept a{color:#fff}
+.top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px;padding:24px 24px 56px}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink)}
+.logo b{font-weight:800;font-size:24px;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.logo span{font-weight:600}
+.nav{display:flex;flex-wrap:wrap;align-items:center;gap:24px;font-size:15px}
+.nav a{color:var(--ink);text-decoration:none}
+.nav a.btn{color:#fff}
+.btn{display:inline-block;background:var(--blue);color:#fff;text-decoration:none;font-weight:700;font-size:19px;padding:19px 30px;border-radius:10px;min-height:44px}
+.btn:hover{background:var(--blue-d);color:#fff}
+.btn.sm{font-size:16px;font-weight:600;padding:12px 20px;border-radius:8px}
+.btn.white{background:#fff;color:var(--blue)}
+.btn.white:hover{background:var(--tint);color:var(--blue)}
+.hero{padding-bottom:96px;background:linear-gradient(180deg,#EEF3FF,#fff 70%)}
+.hero h1{font-weight:800;font-size:clamp(32px,4.2vw,56px);line-height:1.07;letter-spacing:-.03em}
+.lead{font-size:20px;color:var(--muted)}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,480px),1fr));gap:56px;align-items:start}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:20px}
+.stack{display:flex;flex-direction:column;gap:24px}
+.cta-row{display:flex;flex-wrap:wrap;align-items:center;gap:18px}
+.note{font-size:15px;color:var(--muted)}
+.sec{padding:96px 0}
+.sec.alt{background:var(--bg2)}
+.sec h2{font-weight:800;font-size:clamp(28px,3.4vw,44px);line-height:1.1;max-width:800px}
+.sec .head{display:flex;flex-direction:column;gap:14px;margin-bottom:44px;max-width:800px}
+.sec .head p{color:var(--muted)}
+/* переключатель */
+.seg{display:inline-flex;align-self:flex-start;background:#fff;border:1px solid #D9DFEA;border-radius:12px;padding:4px;gap:4px}
+.seg button{border:none;border-radius:9px;padding:12px 22px;font:inherit;font-size:16px;font-weight:700;cursor:pointer;min-height:44px;background:transparent;color:var(--muted)}
+.seg button[aria-pressed="true"][data-mode="manual"]{background:var(--ink);color:#fff}
+.seg button[aria-pressed="true"][data-mode="system"]{background:var(--blue);color:#fff}
+.panel{background:#fff;border:1px solid #E1E5EC;border-radius:22px;padding:30px;box-shadow:0 30px 60px -30px rgba(53,98,241,.35)}
+.panel h3{font-size:19px;padding-bottom:8px}
+.steps{list-style:none;margin:0;padding:0}
+.steps li{display:grid;grid-template-columns:36px 1fr;gap:12px;padding:14px 0;border-top:1px solid #EEF0F3}
+.steps li b{color:var(--muted)}
+.panel.system .steps li b{color:var(--blue)}
+.result{margin-top:14px;background:var(--bg2);border-radius:14px;padding:18px 20px;display:flex;flex-direction:column;gap:2px}
+.result b{font-size:22px}
+.result span{font-size:15px;color:var(--muted)}
+.panel.system .result{background:var(--tint)}
+.panel.system .result b{color:var(--blue)}
+[hidden]{display:none!important}
+/* карточки потерь */
+.card{background:#fff;border-radius:18px;padding:28px;display:flex;flex-direction:column;gap:10px}
+.card .num{font-weight:800;font-size:34px;color:var(--pink)}
+.card h3{font-size:19px}
+.card p{color:var(--muted)}
+/* сводка потерь (вариант B) */
+.loss{background:#fff;border:1px solid #E1E5EC;border-radius:22px;padding:32px;box-shadow:0 30px 60px -30px rgba(53,98,241,.35);display:flex;flex-direction:column;gap:22px}
+.loss .total{font-weight:800;font-size:clamp(38px,4vw,52px);line-height:1.05;letter-spacing:-.02em;color:var(--pink-d)}
+.bar{display:flex;height:14px;border-radius:7px;overflow:hidden;gap:3px}
+.bar i{display:block}
+.legend{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;font-size:15px}
+.legend li{display:flex;align-items:center;gap:10px}
+.legend i{width:10px;height:10px;border-radius:3px;flex:none}
+.legend span{flex:1}
+/* таймлайн трёх дней */
+.days{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:24px}
+.days li{padding:24px 0 0;display:flex;flex-direction:column;gap:10px}
+.days .d{font-size:15px;font-weight:700}
+.days h3{font-size:22px}
+.days p{color:var(--muted)}
+/* мост */
+.bridge{background:var(--blue);color:#fff;padding:88px 0}
+.bridge h2{font-weight:800;font-size:clamp(28px,3.4vw,44px);line-height:1.1}
+.bridge p{color:#DCE7FD}
+.bridge ol{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:14px;font-size:19px}
+.bridge ol li{display:flex;gap:14px;align-items:baseline}
+/* таблица */
+.tbl{overflow-x:auto}
+table{width:100%;min-width:640px;border-collapse:collapse;font-size:17px}
+th,td{padding:16px;text-align:left;border-bottom:1px solid var(--line)}
+thead th{border-bottom:2px solid var(--ink);font-weight:700}
+thead th:first-child{color:var(--muted);font-weight:600}
+td:nth-child(2){color:var(--muted)}
+th:nth-child(3),td:nth-child(3){background:var(--tint);font-weight:600}
+thead th:nth-child(3){color:var(--blue);border-bottom-color:var(--blue);border-radius:12px 12px 0 0}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:last-child td:nth-child(3){color:var(--blue);font-weight:700;border-radius:0 0 12px 12px}
+/* доказательства */
+.big{font-weight:800;font-size:52px;letter-spacing:-.03em;color:var(--blue);line-height:1.1}
+.slot{background:#fff;border:2px dashed #C9CFD8;border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:8px}
+.slot span{color:var(--muted)}
+/* FAQ */
+.faq{max-width:860px;margin:0 auto}
+details{border-bottom:1px solid var(--line);padding:18px 0}
+summary{cursor:pointer;list-style:none;font-weight:700;font-size:19px;display:flex;justify-content:space-between;gap:16px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--blue);font-weight:700}
+details[open] summary::after{content:"\2212"}
+details p{margin-top:10px;color:var(--muted)}
+/* финал */
+.final{text-align:center;display:flex;flex-direction:column;align-items:center;gap:22px;max-width:900px;margin:0 auto}
+.final h2{margin:0 auto}
+footer{background:linear-gradient(180deg,#F4EEFF,#EEF3FF);padding:36px 0;font-size:14px;color:var(--muted)}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
+footer a{color:var(--ink)}
+@media (max-width:720px){
+ .nav a:not(.btn){display:none}
+ .top{padding-bottom:36px}
+ .nav .btn{font-size:14px;padding:10px 14px}
+ .sec{padding:64px 0}.hero{padding-bottom:64px}.bridge{padding:64px 0}
+ .btn{width:100%;text-align:center}
+ .nav .btn{width:auto}
+ .panel,.loss{padding:22px}
+}
+
+.cbar{position:sticky;top:0;z-index:50;background:#1D1F20;color:#fff;font:500 14px/1.3 'Inter',-apple-system,'Segoe UI',sans-serif;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 16px;min-height:52px}
+.cbar a{color:#fff;text-decoration:none;display:inline-flex;align-items:center;gap:6px;min-height:36px}
+.cbar a:hover{text-decoration:underline;color:#fff}
+.cbar .t{opacity:.85;text-align:center;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cbar button{font:inherit;font-weight:600;background:#fff;color:#1D1F20;border:none;border-radius:8px;padding:8px 12px;cursor:pointer;min-height:36px;white-space:nowrap}
+.cbar button:focus-visible,.cbar a:focus-visible{outline:3px solid #A25DE2;outline-offset:2px}
+@media (max-width:640px){.cbar .t{display:none}}
+.why-wrap{max-width:1180px;margin:0 auto 28px;padding:0 24px;box-sizing:border-box}
+.why{font-family:'Inter',-apple-system,'Segoe UI',sans-serif;background:#fff;border:1.5px dashed #A25DE2;border-radius:14px;padding:14px 18px;color:#1D1F20;font-size:15px;line-height:1.5;box-shadow:0 10px 28px -18px rgba(162,93,226,.7);max-width:820px;text-align:left}
+.why p{margin:0;color:#1D1F20;font-size:15px}
+.why-label{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.02em;color:#fff;background:#A25DE2;border-radius:6px;padding:3px 9px;margin-bottom:8px}
+.why.growth{border-color:#1762EF}
+.why.growth .why-label{background:#1762EF}
+html.notes-off .why-wrap{display:none}
+</style>
+<script>
+  // Яндекс Метрика: впишите номер счётчика вместо 0, остальное уже настроено.
+  window.YM_ID = 0;
+  window.AB_VARIANT = 'concept_c';
+  if (window.YM_ID) {
+    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,'script','https://mc.yandex.ru/metrika/tag.js','ym');
+    ym(window.YM_ID, 'init', {clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true, params:{ab_variant:'concept_c'}});
+  }
+</script>
+</head>
+<body>
+<div class="cbar" role="navigation" aria-label="Навигация по концепциям">
+  <a href="index.html"><span aria-hidden="true">←</span> Все концепции</a>
+  <span class="t">Концепция C: Before–After–Bridge + SEO</span>
+  <button type="button" id="notesBtn" aria-pressed="true">Скрыть пояснения</button>
+</div>
+<main>
+<section class="hero">
+  <header class="wrap top">
+  <a class="logo" href="#" aria-label="Система 10X, раздел FBS"><b>10X</b><span>FBS</span></a>
+  <nav class="nav" aria-label="Разделы страницы">
+    <a href="#losses">Потери</a>
+    <a href="#compare">Сравнение</a>
+    <a href="#faq">Вопросы</a>
+    <a class="btn sm" href="#start" data-goal="cta_header">Попробовать бесплатно</a>
+  </nav>
+</header>
+<div class="why-wrap"><aside class="why " aria-label="Пояснение к блоку"><b class="why-label">Почему этот блок здесь</b><p>Первый экран. H1 содержит главный поисковый запрос «аналитика FBS Wildberries» и сразу уточняет, что анализируется. Переключатель «Вручную / В Системе 10X» показывает продукт в действии: те же задачи, два способа. Одна кнопка над сгибом и рядом проверяемый факт — 1 500+ кабинетов.</p></aside></div>
+
+  <div class="wrap grid2">
+    <div class="stack">
+      <h1>Аналитика FBS на Wildberries: остатки, отмены и маржа по каждому складу</h1>
+      <p class="lead">Система 10X собирает данные кабинета по API и показывает, где FBS теряет выручку. Сравните ежедневную проверку вручную и в системе.</p>
+      <div class="seg" role="group" aria-label="Способ проверки FBS" data-toggle>
+          <button type="button" data-mode="manual" aria-pressed="true" data-goal="toggle_manual">Вручную</button>
+          <button type="button" data-mode="system" aria-pressed="false" data-goal="toggle_system">В Системе 10X</button>
+        </div>
+      <div class="cta-row">
+        <a class="btn" href="#start" data-goal="cta_hero">Попробовать 3 дня бесплатно</a>
+        <span class="note">1 500+ кабинетов подключены к Системе 10X</span>
+      </div>
+    </div>
+    <div>
+      <div class="panel" data-panel="manual" aria-live="polite">
+        <h3>Проверка FBS вручную</h3>
+        <ol class="steps">
+          <li><b>1</b><span>Выгрузка заказов и остатков из личного кабинета WB</span></li>
+          <li><b>2</b><span>Сведение отчётов фулфилментов в общую таблицу</span></li>
+          <li><b>3</b><span>Сверка остатков на складе с остатками в WB по каждому товару</span></li>
+          <li><b>4</b><span>Штрафы за отмены видны в финотчёте общей суммой, без разбивки по складам</span></li>
+        </ol>
+        <div class="result"><b>Часы ручной работы</b><span>часть потерь обнаруживается только в финотчёте</span></div>
+      </div>
+      <div class="panel system" data-panel="system" hidden>
+        <h3>Проверка FBS в Системе 10X</h3>
+        <ol class="steps">
+          <li><b>1</b><span>«Сводка»: четыре показателя потерь на одном экране</span></li>
+          <li><b>2</b><span>«Матрица складов»: товары, которые есть на складе, но не объявлены в WB</span></li>
+          <li><b>3</b><span>«Отмены»: количество отмен и сумма штрафов по каждому фулфилменту</span></li>
+          <li><b>4</b><span>«Куда везти»: что и на какой склад переместить</span></li>
+        </ol>
+        <div class="result"><b>Около 3 минут на проверку</b><span>данные обновляются по API, без выгрузок и таблиц</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="sec alt" id="losses">
+<div class="why-wrap"><aside class="why " aria-label="Пояснение к блоку"><b class="why-label">Почему этот блок здесь</b><p>Сразу после первого экрана — цена проблемы в рублях. Цифры взяты из примера на исходной странице и сложены без противоречий: только реальные потери, без оборота и замороженного товара.</p></aside></div>
+
+  <div class="wrap">
+    <div class="head">
+      <h2>Где FBS теряет выручку при ручном контроле</h2>
+      <p>Пример кабинета с заказами 69,7 млн ₽ за 30 дней. Общая сумма потерь составила 2&nbsp;784&nbsp;033&nbsp;₽, около 4% заказов.</p>
+    </div>
+    <div class="grid3">
+      <div class="card"><span class="num">2,35 млн ₽</span><h3>Упущенная выручка из-за нулевых остатков</h3><p>Товар был на складе, но не был объявлен в WB.</p></div>
+      <div class="card"><span class="num">401 тыс. ₽</span><h3>Переплата комиссии за скорость сборки</h3><p>В выгодную зону комиссии попало 4,5% заданий.</p></div>
+      <div class="card"><span class="num">37 тыс. ₽</span><h3>Штрафы за отмены фулфилмента</h3><p>80 заданий отменено на стороне фулфилмента.</p></div>
+    </div>
+  </div>
+</section>
+<section class="sec">
+<div class="why-wrap"><aside class="why " aria-label="Пояснение к блоку"><b class="why-label">Почему этот блок здесь</b><p>После «где теряем» — «что получите». Нумерация здесь оправдана: это реальная последовательность трёх дней теста. Пункты сформулированы как результат для селлера, а не как названия вкладок.</p></aside></div>
+
+  <div class="wrap">
+    <div class="head"><h2>Что покажет бесплатный тест за три дня</h2></div>
+    <ol class="days">
+      <li style="border-top:4px solid #3562F1"><span class="d" style="color:#3562F1">День 1</span><h3>Сколько выручки потеряно</h3><p>Сводка и потери за период: сумма в рублях и товары с нулевым остатком в WB.</p></li>
+      <li style="border-top:4px solid #A25DE2"><span class="d" style="color:#8B45CF">День 2</span><h3>Что осталось незамеченным</h3><p>Заказы, комиссия и отмены по каждому складу: где сборка шла медленно и откуда пришли штрафы.</p></li>
+      <li style="border-top:4px solid #F2326F"><span class="d" style="color:#C21D55">День 3</span><h3>Что исправить</h3><p>Куда переместить товар, какой склад быстрее доставляет в регион и где маржа выше.</p></li>
+    </ol>
+  </div>
+</section>
+<section class="bridge">
+<div class="why-wrap"><aside class="why " aria-label="Пояснение к блоку"><b class="why-label">Почему этот блок здесь</b><p>Мост от желания к действию: три простых шага снимают страх сложного подключения. Здесь первый повтор кнопки — после сильной смысловой точки, а не после каждого блока.</p></aside></div>
+
+  <div class="wrap grid2" style="align-items:center;gap:48px">
+    <div class="stack" style="gap:16px">
+      <h2>Как подключить аналитику FBS</h2>
+      <p>Менеджер подключит кабинет по API и настроит склады вместе с вами. Три дня теста начинаются после настройки.</p>
+    </div>
+    <div class="stack" style="gap:18px;align-items:flex-start">
+      <ol>
+        <li><b>1.</b>Напишите в поддержку в Telegram или MAX</li>
+        <li><b>2.</b>Настройте склады и фулфилменты вместе с менеджером</li>
+        <li><b>3.</b>Откройте сводку на следующий день</li>
+      </ol>
+      <a class="btn white" href="#start" data-goal="cta_bridge">Попробовать 3 дня бесплатно</a>
+    </div>
+  </div>
+</section>
+<section class="sec" id="compare">
+<div class="why-wrap"><aside class="why " aria-label="Пояснение к блоку"><b class="why-label">Почему этот блок здесь</b><p>Главный конкурент — не другой сервис, а мысль «справлюсь в кабинете WB». Таблица отвечает на неё по пунктам и собирает сравнительные поисковые запросы.</p></aside></div>
+
+  <div class="wrap" style="max-width:1048px">
+    <div class="head"><h2>Личный кабинет WB и Система 10X: сравнение для FBS</h2></div>
+    <div class="tbl">
+      <table>
+        <thead><tr><th scope="col">Задача</th><th scope="col">Кабинет WB и таблицы</th><th scope="col">Система 10X</th></tr></thead>
+        <tbody>
+          <tr><td>Остаток на складе рядом с остатком в WB</td><td>сверка вручную</td><td>по каждому товару и складу</td></tr>
+          <tr><td>Упущенная выручка в рублях</td><td>расчёт вручную</td><td>с учётом сезонности</td></tr>
+          <tr><td>Отмены и штрафы по каждому фулфилменту</td><td>общая сумма в финотчёте</td><td>разбивка по складам</td></tr>
+          <tr><td>Скорость доставки складов по регионам</td><td>сведение из выгрузок</td><td>по каждому округу</td></tr>
+          <tr><td>Маржа товара на разных складах</td><td>расчёт вручную</td><td>по каждому складу</td></tr>
+          <tr><td>Время на проверку</td><td>часы</td><td>около 3 минут</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+<section class="sec alt" style="padding:80px 0">
+<div class="why-wrap"><aside class="why " aria-label="Пояснение к блоку"><b class="why-label">Почему этот блок здесь</b><p>Доказательства идут после сравнения, когда читатель уже готов поверить. Слоты под кейс и отзыв оставлены пустыми намеренно: выдумывать их нельзя, нужны реальные данные 10X.</p></aside></div>
+
+  <div class="wrap grid3" style="gap:28px;align-items:start">
+    <div><div class="big">1 500+</div><span class="note" style="font-size:18px">кабинетов подключены к Системе 10X</span></div>
+    <div class="slot"><b>Кейс</b><span>[как селлер контролировал FBS до 10X] → [что изменилось] → [результат в ₽ и часах]</span></div>
+    <div class="slot"><b>Отзыв</b><span>[цитата с результатом], [имя, магазин на WB]</span></div>
+  </div>
+</section>
+<section class="sec" id="faq">
+<div class="why-wrap"><aside class="why " aria-label="Пояснение к блоку"><b class="why-label">Почему этот блок здесь</b><p>FAQ снимает последние возражения (цена, ручной ввод, фулфилмент) и закрывает «длинный хвост» поисковых запросов. Ответы короткие, по одному на вопрос.</p></aside></div>
+
+  <div class="wrap faq">
+    <h2 style="font-weight:800;font-size:clamp(28px,3vw,40px);margin-bottom:20px">Вопросы об аналитике FBS</h2>
+    <details open><summary>Что показывает аналитика FBS в Системе 10X?</summary><p>Остатки на складах и в WB, упущенную выручку, скорость сборки, комиссию, отмены и штрафы, распределение товара по складам, скорость доставки до ПВЗ и маржу по каждому складу.</p></details>
+    <details><summary>Подходит ли система для работы через фулфилмент?</summary><p>Да. Данные разбиваются по каждому складу и фулфилменту, их можно сравнивать между собой.</p></details>
+    <details><summary>Нужно ли вносить данные вручную?</summary><p>Нет, данные поступают по API Wildberries.</p></details>
+    <details><summary>Сколько стоит и как работает тест?</summary><p>Три дня полного доступа бесплатно, отсчёт начинается после настройки. Далее [ЦЕНА] ₽ в месяц, раздел FBS входит в Систему 10X без доплаты.</p></details>
+  </div>
+</section>
+<section class="sec" id="start" style="padding-top:0">
+<div class="why-wrap"><aside class="why " aria-label="Пояснение к блоку"><b class="why-label">Почему этот блок здесь</b><p>Финал повторяет обещание одной фразой и даёт одно действие. MAX — запасной канал мелкой ссылкой: он не спорит с главной кнопкой, но спасает тех, у кого нет Telegram.</p></aside></div>
+
+  <div class="wrap final">
+    <h2>Попробуйте аналитику FBS на данных своего кабинета</h2>
+    <p class="lead" style="font-size:19px">Три дня полного доступа бесплатно. Отсчёт начинается после настройки.</p>
+    <a class="btn" href="https://t.me/tenXsupport_bot" data-goal="cta_telegram" rel="noopener">Попробовать 3 дня бесплатно</a>
+    <span class="note">Откроется Telegram. Нет Telegram? <a href="https://max.ru/id780242822338_bot" data-goal="cta_max" rel="noopener">Напишите в MAX</a></span>
+  </div>
+</section>
+</main>
+<footer>
+  <div class="wrap">
+    <span>Концепт лендинга раздела FBS Системы 10X, тестовое задание</span>
+    <span><a href="https://system10x.ru/">Официальный сайт Системы 10X</a></span>
+  </div>
+</footer><script>
+(function(){
+  // Переключатель «Вручную / В Системе 10X»
+  document.querySelectorAll('[data-toggle]').forEach(function(group){
+    var btns = group.querySelectorAll('button');
+    btns.forEach(function(b){
+      b.addEventListener('click', function(){
+        btns.forEach(function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+        document.querySelectorAll('[data-panel]').forEach(function(p){
+          p.hidden = p.getAttribute('data-panel') !== b.getAttribute('data-mode');
+        });
+      });
+    });
+  });
+  // Цели Яндекс Метрики: клик по любому элементу с data-goal
+  document.addEventListener('click', function(e){
+    var el = e.target.closest('[data-goal]');
+    if (el && window.ym && window.YM_ID) { window.ym(window.YM_ID, 'reachGoal', el.getAttribute('data-goal')); }
+  });
+})();
+</script>
+<script>
+(function(){
+  var off = false;
+  try { off = localStorage.getItem('fbs_notes') === 'off'; } catch (e) {}
+  var q = new URLSearchParams(location.search).get('notes');
+  if (q === '0') off = true; if (q === '1') off = false;
+  var btn = document.getElementById('notesBtn');
+  function apply(){
+    document.documentElement.classList.toggle('notes-off', off);
+    if (btn) { btn.textContent = off ? 'Показать пояснения' : 'Скрыть пояснения'; btn.setAttribute('aria-pressed', String(!off)); }
+  }
+  apply();
+  if (btn) btn.addEventListener('click', function(){ off = !off; try { localStorage.setItem('fbs_notes', off ? 'off' : 'on'); } catch (e) {} apply(); });
+})();
+</script>
+</body>
+</html>
