@@ -30,11 +30,12 @@ h1,h2,h3,p{margin:0}
 .logo b{font-weight:800;font-size:24px;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
 .logo span{padding-left:12px;border-left:1px solid #D2D6DD}
 .top .who{font-size:15px;color:var(--muted);text-align:right}
+.top .who b{color:var(--ink)}
 .hero h1{font-weight:800;font-size:clamp(34px,5.2vw,68px);line-height:1.03;letter-spacing:-.035em;max-width:980px}
 .hero .lead{margin-top:24px;font-size:clamp(18px,1.6vw,21px);color:var(--muted);max-width:720px}
 .hero .actions{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center;margin-top:36px}
 .facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:12px;margin-top:64px}
-.facts div{background:rgba(255,255,255,.75);border:1px solid #E3E6F5;border-radius:14px;padding:16px 18px}
+.facts div{background:rgba(255,255,255,.75);border:1px solid #E3E6F5;border-radius:14px;padding:18px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center}
 .facts b{display:block;font-size:28px;font-weight:800;letter-spacing:-.02em;color:var(--blue)}
 .facts span{font-size:15px;color:var(--muted)}
 
@@ -57,8 +58,9 @@ h1,h2,h3,p{margin:0}
 
 /* концепции */
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,520px),1fr));gap:28px;margin-top:48px}
-.card{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:22px;overflow:hidden;text-decoration:none;color:var(--ink);transition:box-shadow .2s, transform .2s}
-.card:hover{box-shadow:0 30px 60px -30px rgba(23,98,239,.45);transform:translateY(-2px);color:var(--ink)}
+.card{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:22px;overflow:hidden;color:var(--ink);transition:box-shadow .2s, transform .2s}
+.card .pv{display:block;text-decoration:none}
+.card:hover{box-shadow:0 30px 60px -30px rgba(23,98,239,.45);transform:translateY(-2px)}
 @media (prefers-reduced-motion:reduce){.card,.card:hover{transition:none;transform:none}}
 .frame{background:#EEF1F6;padding:12px 12px 0;border-bottom:1px solid var(--line)}
 .frame .dots{display:flex;gap:6px;padding:0 4px 10px}
@@ -71,11 +73,19 @@ h1,h2,h3,p{margin:0}
 .tag.orig{color:var(--ink);background:#EEF0F3}
 .card h3{font-size:24px;line-height:1.2;letter-spacing:-.02em}
 .card p{color:var(--muted);font-size:16px}
-.open{margin-top:auto;padding-top:8px;font-weight:700;color:var(--blue)}
+.card .btn{margin-top:auto;align-self:flex-start}
+.card .row{margin-top:auto;padding-top:8px;display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.card .row .btn{margin-top:0}
 .aside-link{margin-top:8px;font-size:15px}
 .howto{margin-top:28px;display:flex;gap:14px;align-items:flex-start;background:#fff;border:1.5px dashed var(--purple);border-radius:14px;padding:16px 18px;max-width:820px;font-size:16px}
 .howto b.lbl{flex:none;font-size:12px;color:#fff;background:var(--purple);border-radius:6px;padding:3px 9px;margin-top:2px}
 
+.author{display:flex;flex-wrap:wrap;align-items:center;gap:12px 16px;margin-top:28px;font-size:15px;color:var(--muted)}
+.contacts{display:flex;flex-wrap:wrap;gap:10px}
+.contacts.big{margin-top:28px;gap:12px}
+.cbtn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:10px 18px;border-radius:10px;border:1.5px solid #CCD6EA;background:#fff;color:var(--ink);text-decoration:none;font-weight:600;font-size:15px}
+.cbtn:hover{border-color:var(--blue);color:var(--blue)}
+.contacts.big .cbtn{min-height:48px;font-size:16px;padding:12px 22px}
 footer{background:linear-gradient(180deg,#F4EEFF,#EEF3FF);padding:36px 0;font-size:15px;color:var(--muted)}
 footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
 @media (max-width:640px){
@@ -84,8 +94,21 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
   .body{padding:22px}
   .hero .actions .btn{width:100%}
   .howto{flex-direction:column;gap:8px}
+  .card .btn,.contacts .btn,.contacts.big .cbtn{width:100%}
 }
 </style>
+<script>
+  // Яндекс Метрика: впишите номер счётчика вместо 0. Цели отправляются по атрибуту data-goal.
+  window.YM_ID = 0;
+  if (window.YM_ID) {
+    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,'script','https://mc.yandex.ru/metrika/tag.js','ym');
+    ym(window.YM_ID, 'init', {clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true});
+  }
+  document.addEventListener('click', function(e){
+    var el = e.target.closest('[data-goal]');
+    if (el && window.ym && window.YM_ID) window.ym(window.YM_ID, 'reachGoal', el.getAttribute('data-goal'));
+  });
+</script>
 </head>
 <body>
 
@@ -94,13 +117,20 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
   <div class="wrap">
     <div class="top">
       <span class="logo"><b>10X</b><span>FBS</span></span>
-      <span class="who">Тестовое задание<br>[Имя Фамилия], [Telegram или почта]</span>
+      <span class="who">Тестовое задание<br><b>Владислав Семрак</b></span>
     </div>
     <h1>Лендинг раздела FBS: три концепции и исходник для сравнения</h1>
     <p class="lead">Я разобрал текущую страницу system10x.ru/fbs-a, нашёл точки роста и собрал три лендинга на разных методиках продаж. На каждом лендинге у блоков есть сноски: почему блок стоит именно здесь.</p>
     <div class="actions">
       <a class="btn" href="#concepts">Смотреть концепции</a>
       <a class="link" href="#growth">Точки роста исходника</a>
+    </div>
+    <div class="author"><span>Автор: <b>Владислав Семрак</b></span>
+      <div class="contacts">
+        <a class="cbtn" href="https://t.me/Semrack" rel="noopener" data-goal="contact_telegram">Telegram</a>
+        <a class="cbtn" href="mailto:vladsemrack@gmail.com" data-goal="contact_email">vladsemrack@gmail.com</a>
+        <a class="cbtn" href="tel:+79513551875" data-goal="contact_phone">+7 951 355-18-75</a>
+      </div>
     </div>
     <div class="facts">
       <div><b>12</b><span>вкладок раздела FBS сведены в 4 понятные боли</span></div>
@@ -141,51 +171,71 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
     <p class="intro">Все версии используют цвета сайта 10X и опираются только на факты с текущей страницы. Где данных нет (цена, кейсы, отзывы), стоят заглушки в квадратных скобках.</p>
     <div class="howto"><b class="lbl">Сноски</b><span>На лендингах у каждого блока есть пояснение. Скрыть или показать их можно кнопкой в тёмной панели сверху.</span></div>
     <div class="cards">
-      <a class="card" href="a.html">
+      <article class="card">
+        <a class="pv" href="a.html" tabindex="-1" aria-hidden="true" data-goal="open_concept_c_preview">
         <div class="frame" aria-hidden="true"><div class="dots"><i></i><i></i><i></i></div><div class="shot"><img src="img/a.jpg" alt="" loading="lazy" width="1440" height="900"></div></div>
+        </a>
         <div class="body">
           <span class="tag main">Основная · Before–After–Bridge + SEO</span>
           <h3>Проверка FBS вручную и в Системе 10X</h3>
           <p>Методика «до — после — мост» и Jobs To Be Done. Переключатель на первом экране сравнивает ручную проверку и работу в системе. Тексты и структура заточены под запрос «аналитика FBS Wildberries».</p>
-          <span class="open">Открыть лендинг</span>
+          <div class="row"><a class="btn" href="a.html" data-goal="open_concept_c">Открыть лендинг</a></div>
         </div>
-      </a>
-      <a class="card" href="pas.html">
+      </article>
+      <article class="card">
+        <a class="pv" href="pas.html" tabindex="-1" aria-hidden="true" data-goal="open_concept_pas_preview">
         <div class="frame" aria-hidden="true"><div class="dots"><i></i><i></i><i></i></div><div class="shot"><img src="img/pas.jpg" alt="" loading="lazy" width="1440" height="900"></div></div>
+        </a>
         <div class="body">
           <span class="tag">Problem → Agitate → Solve</span>
           <h3>Счётчик потерь</h3>
           <p>Неприятие потерь: живой счётчик показывает, сколько кабинет из примера недополучил с полуночи. Дальше потери масштабируются на месяц, квартал и год, а каждая проблема получает своё решение.</p>
-          <span class="open">Открыть лендинг</span>
+          <div class="row"><a class="btn" href="pas.html" data-goal="open_concept_pas">Открыть лендинг</a></div>
         </div>
-      </a>
-      <a class="card" href="offer.html">
+      </article>
+      <article class="card">
+        <a class="pv" href="offer.html" tabindex="-1" aria-hidden="true" data-goal="open_concept_offer_preview">
         <div class="frame" aria-hidden="true"><div class="dots"><i></i><i></i><i></i></div><div class="shot"><img src="img/offer.jpg" alt="" loading="lazy" width="1440" height="900"></div></div>
+        </a>
         <div class="body">
           <span class="tag">Оффер-стек Хормози</span>
           <h3>Три дня, от которых сложно отказаться</h3>
           <p>Value Equation: бесплатный тест упакован как чек «что вы получите», затем четыре рычага ценности, стек из 12 инструментов, снятие риска и сравнение цены с потерями.</p>
-          <span class="open">Открыть лендинг</span>
+          <div class="row"><a class="btn" href="offer.html" data-goal="open_concept_offer">Открыть лендинг</a></div>
         </div>
-      </a>
-      <a class="card" href="original.html">
+      </article>
+      <article class="card">
+        <a class="pv" href="original.html" tabindex="-1" aria-hidden="true" data-goal="open_original_preview">
         <div class="frame" aria-hidden="true"><div class="dots"><i></i><i></i><i></i></div><div class="shot"><img src="https://system10x.ru/_astro/fbs-summary-top.CIdI1YYM_Z1KFcNJ.webp" alt="" loading="lazy" width="828" height="469"></div></div>
+        </a>
         <div class="body">
           <span class="tag orig">Исходник</span>
           <h3>Текущий лендинг 10X для сравнения</h3>
           <p>Копия system10x.ru/fbs-a с теми же текстами и порядком блоков. Сноски у каждого блока отмечают, что уже работает и где точка роста.</p>
-          <span class="open">Открыть копию</span>
+          <div class="row"><a class="btn" href="original.html" data-goal="open_original">Открыть копию</a></div>
         </div>
-      </a>
+      </article>
     </div>
     <p class="aside-link">Оригинал страницы: <a href="https://system10x.ru/fbs-a" rel="noopener">system10x.ru/fbs-a</a></p>
+  </div>
+</section>
+
+<section class="sec alt" id="contacts">
+  <div class="wrap">
+    <h2>Связаться со мной</h2>
+    <p class="intro">Владислав Семрак. Удобнее всего в Telegram, отвечаю быстро.</p>
+    <div class="contacts big">
+      <a class="btn" href="https://t.me/Semrack" rel="noopener" data-goal="contact_telegram_bottom">Написать в Telegram</a>
+      <a class="cbtn" href="mailto:vladsemrack@gmail.com" data-goal="contact_email_bottom">vladsemrack@gmail.com</a>
+      <a class="cbtn" href="tel:+79513551875" data-goal="contact_phone_bottom">+7 951 355-18-75</a>
+    </div>
   </div>
 </section>
 </main>
 
 <footer>
   <div class="wrap">
-    <span>[Имя Фамилия], тестовое задание для Системы 10X, 2026</span>
+    <span>Владислав Семрак, тестовое задание для Системы 10X, 2026</span>
     <span>Концепты не являются официальным сайтом Системы 10X</span>
   </div>
 </footer>
