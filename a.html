@@ -78,6 +78,16 @@ p{margin:0}
 .legend li{display:flex;align-items:center;gap:10px}
 .legend i{width:10px;height:10px;border-radius:3px;flex:none}
 .legend span{flex:1}
+/* экраны ЛК */
+.lk{margin:48px 0 0;background:#fff;border:1px solid var(--line);border-radius:22px;padding:22px;box-shadow:0 30px 60px -36px rgba(53,98,241,.35)}
+.lk-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:14px;margin-bottom:18px}
+.lk-head b{font-size:19px}
+.lk-tabs{display:inline-flex;flex-wrap:wrap;background:var(--bg2);border-radius:12px;padding:4px;gap:4px}
+.lk-tabs button{border:none;border-radius:9px;padding:10px 16px;min-height:44px;font:inherit;font-size:15px;font-weight:600;background:transparent;color:var(--muted);cursor:pointer}
+.lk-tabs button[aria-pressed="true"]{background:#fff;color:var(--blue);box-shadow:0 1px 3px rgba(29,31,32,.12)}
+.lk-shot{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--bg2)}
+.lk-shot img{display:block;width:100%;height:auto}
+@media (max-width:720px){.lk{padding:14px}.lk-tabs{width:100%}.lk-tabs button{flex:1;padding:10px 8px;font-size:14px}}
 /* таймлайн трёх дней */
 .days{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:24px}
 .days li{padding:24px 0 0;display:flex;flex-direction:column;gap:10px}
@@ -162,7 +172,7 @@ html.notes-off .why-wrap{display:none}
 <noscript><div><img src="https://mc.yandex.ru/watch/114271586" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 <div class="cbar" role="navigation" aria-label="Навигация по концепциям">
   <a href="index.html"><span aria-hidden="true">←</span> Все концепции</a>
-  <span class="t">Концепция C: Before–After–Bridge + SEO</span>
+  <span class="t">Before–After–Bridge + SEO</span>
   <button type="button" id="notesBtn" aria-pressed="true">Скрыть пояснения</button>
 </div>
 <main>
@@ -216,7 +226,7 @@ html.notes-off .why-wrap{display:none}
   </div>
 </section>
 <section class="sec alt" id="losses">
-<div class="why-wrap"><aside class="why " aria-label="Пояснение к блоку"><b class="why-label">Почему этот блок здесь</b><p>Сразу после первого экрана — цена проблемы в рублях. Цифры взяты из примера на исходной странице и сложены без противоречий: только реальные потери, без оборота и замороженного товара.</p></aside></div>
+<div class="why-wrap"><aside class="why " aria-label="Пояснение к блоку"><b class="why-label">Почему этот блок здесь</b><p>Сразу после первого экрана — цена проблемы в рублях. Цифры взяты из примера на исходной странице и сложены без противоречий: только реальные потери, без оборота и замороженного товара. Под карточками — настоящие экраны личного кабинета 10X с этими цифрами: так обещание подкреплено продуктом, а не только словами.</p></aside></div>
 
   <div class="wrap">
     <div class="head">
@@ -228,6 +238,21 @@ html.notes-off .why-wrap{display:none}
       <div class="card"><span class="num">401 тыс. ₽</span><h3>Переплата комиссии за скорость сборки</h3><p>В выгодную зону комиссии попало 4,5% заданий.</p></div>
       <div class="card"><span class="num">37 тыс. ₽</span><h3>Штрафы за отмены фулфилмента</h3><p>80 заданий отменено на стороне фулфилмента.</p></div>
     </div>
+    <figure class="lk">
+      <figcaption class="lk-head">
+        <span><b>Как эти потери выглядят в Системе 10X</b><br><span class="note">Экраны личного кабинета из примера</span></span>
+        <span class="lk-tabs" role="group" aria-label="Экран личного кабинета" data-lk>
+          <button type="button" aria-pressed="true" data-shot="losses" data-goal="lk_losses">Потери за период</button>
+          <button type="button" aria-pressed="false" data-shot="commission" data-goal="lk_commission">Комиссия</button>
+          <button type="button" aria-pressed="false" data-shot="cancel" data-goal="lk_cancellations">Отмены</button>
+        </span>
+      </figcaption>
+      <div class="lk-shot">
+        <img data-shot-img="losses" src="https://system10x.ru/_astro/fbs-losses.DxyxHIXa_Za2OmS.webp" srcset="https://system10x.ru/_astro/fbs-losses.DxyxHIXa_Za2OmS.webp 828w, https://system10x.ru/_astro/fbs-losses.DxyxHIXa_hE2PX.webp 1080w" sizes="(max-width: 1100px) 100vw, 1080px" width="2200" height="1247" loading="lazy" alt="Вкладка «Потери за период»: упущенная выручка, график товаров в нуле по дням и таблица с днями в нуле и скоростью продаж">
+        <img data-shot-img="commission" hidden src="https://system10x.ru/_astro/fbs-commission.B4IkQjjg_Z2740Q9.webp" srcset="https://system10x.ru/_astro/fbs-commission.B4IkQjjg_Z2740Q9.webp 828w, https://system10x.ru/_astro/fbs-commission.B4IkQjjg_qvv4M.webp 1080w" sizes="(max-width: 1100px) 100vw, 1080px" width="2200" height="1248" loading="lazy" alt="Вкладка «Комиссия»: заработано скидкой, потеряно списанием и таблица складов по зонам скорости">
+        <img data-shot-img="cancel" hidden src="https://system10x.ru/_astro/fbs-cancellations.CJ6hLVN1_GXHWc.webp" width="2200" height="1250" loading="lazy" alt="Вкладка «Отмены»: причины отмен и разрез по складам">
+      </div>
+    </figure>
   </div>
 </section>
 <section class="sec">
@@ -307,7 +332,7 @@ html.notes-off .why-wrap{display:none}
     <h2>Попробуйте аналитику FBS на данных своего кабинета</h2>
     <p class="lead" style="font-size:19px">Три дня полного доступа бесплатно. Отсчёт начинается после настройки.</p>
     <a class="btn" href="https://t.me/tenXsupport_bot" data-goal="cta_telegram" rel="noopener">Попробовать 3 дня бесплатно</a>
-    <span class="note">Откроется Telegram. Нет Telegram? <a href="https://max.ru/id780242822338_bot" data-goal="cta_max" rel="noopener">Напишите в MAX</a></span>
+    <span class="note">Нет Telegram? <a href="https://max.ru/id780242822338_bot" data-goal="cta_max" rel="noopener">Напишите в MAX</a></span>
   </div>
 </section>
 </main>
@@ -327,6 +352,16 @@ html.notes-off .why-wrap{display:none}
         document.querySelectorAll('[data-panel]').forEach(function(p){
           p.hidden = p.getAttribute('data-panel') !== b.getAttribute('data-mode');
         });
+      });
+    });
+  });
+  // Экраны личного кабинета
+  document.querySelectorAll('[data-lk]').forEach(function(group){
+    var btns = group.querySelectorAll('button');
+    btns.forEach(function(b){
+      b.addEventListener('click', function(){
+        btns.forEach(function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+        document.querySelectorAll('[data-shot-img]').forEach(function(img){ img.hidden = img.getAttribute('data-shot-img') !== b.getAttribute('data-shot'); });
       });
     });
   });
