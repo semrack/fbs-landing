@@ -15,6 +15,7 @@ a:focus-visible,input:focus-visible{outline:3px solid #A25DE2;outline-offset:2px
 input[type=range]{accent-color:#1762EF}
 details summary{cursor:pointer;list-style:none}
 details summary::-webkit-details-marker{display:none}
+details summary{display:flex;justify-content:space-between;align-items:center;gap:16px}details summary::after{content:"+";flex:none;width:32px;height:32px;border-radius:50%;background:#EAF1FE;color:#1762EF;font-weight:700;font-size:22px;line-height:32px;text-align:center}details[open] summary::after{content:"\2212"}
 html .why-wrap{padding:0}@media (max-width:640px){[style*="1px dashed #C9CFD8"]{flex-wrap:wrap;gap:2px 16px!important}[style*="1px dashed #C9CFD8"] span:last-child{white-space:normal!important}}
 .cbar{position:sticky;top:0;z-index:50;background:#1D1F20;color:#fff;font:500 14px/1.3 'Inter',-apple-system,'Segoe UI',sans-serif;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 16px;min-height:52px}
 .cbar a{color:#fff;text-decoration:none;display:inline-flex;align-items:center;gap:6px;min-height:36px}
@@ -168,14 +169,13 @@ html.notes-off .why-wrap{display:none}
 
 <!-- RISK REVERSAL: перед ценой, чтобы цену читали без страха -->
 <section style="background: linear-gradient(180deg, #F4EEFF, #EEF3FF); padding: 88px 24px">
-<div class="why-wrap"><aside class="why " aria-label="Пояснение к блоку"><b class="why-label">Почему этот блок здесь</b><p>Разворот риска идёт перед ценой, чтобы цену читали уже без страха. Гарантия помечена как предложение — её нужно согласовать с 10X.</p></aside></div>
+<div class="why-wrap"><aside class="why " aria-label="Пояснение к блоку"><b class="why-label">Почему этот блок здесь</b><p>Разворот риска идёт перед ценой, чтобы цену читали уже без страха: тест начинается после настройки, а продление — решение самого селлера.</p></aside></div>
 
   <div style="max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr)); gap: 40px; align-items: center">
     <h2 style="margin: 0; font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: clamp(26px, 3vw, 40px); line-height: 1.15; letter-spacing: -0.015em">Вы ничем не рискуете</h2>
     <div style="display: flex; flex-direction: column; gap: 16px">
       <span><b>Тест не сгорит на настройке.</b> Три дня начинаются только после того, как всё подключено.</span>
       <span><b>Не нашли потерь, которые дороже подписки?</b> Просто не продлевайте.</span>
-      <span style="border: 2px dashed #A25DE2; border-radius: 14px; padding: 16px 18px; color: #5C6470">[Предложение для 10X: гарантия возврата первого месяца, если система не найдёт потерь больше его стоимости. Согласовать перед запуском.]</span>
     </div>
   </div>
 </section>
