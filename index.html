@@ -25,11 +25,12 @@ h1,h2,h3,p{margin:0}
 
 /* приветствие */
 .hero{background:linear-gradient(180deg,#F4EEFF,#EEF3FF 60%,#fff);padding:28px 0 96px}
-.top{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:80px}
+.top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:72px}
 .logo{display:flex;align-items:center;gap:12px;font-weight:700}
 .logo b{font-weight:800;font-size:24px;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
 .logo span{padding-left:12px;border-left:1px solid #D2D6DD}
-.top .who{font-size:15px;color:var(--muted);text-align:right}
+.top .who{font-size:15px;color:var(--muted);display:flex;flex-direction:column;align-items:flex-end;gap:10px}
+.top .who .cbtn{min-height:40px;padding:8px 14px;font-size:14px}
 .top .who b{color:var(--ink)}
 .hero h1{font-weight:800;font-size:clamp(34px,5.2vw,68px);line-height:1.03;letter-spacing:-.035em;max-width:980px}
 .hero .lead{margin-top:24px;font-size:clamp(18px,1.6vw,21px);color:var(--muted);max-width:720px}
@@ -89,7 +90,7 @@ h1,h2,h3,p{margin:0}
 footer{background:linear-gradient(180deg,#F4EEFF,#EEF3FF);padding:36px 0;font-size:15px;color:var(--muted)}
 footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
 @media (max-width:640px){
-  .hero{padding-bottom:64px}.top{margin-bottom:48px}.top .who{display:none}
+  .hero{padding-bottom:64px}.top{margin-bottom:48px}.top .who{align-items:flex-start;width:100%}
   .sec{padding:64px 0}.facts{margin-top:40px}
   .body{padding:22px}
   .hero .actions .btn{width:100%}
@@ -126,20 +127,20 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
   <div class="wrap">
     <div class="top">
       <span class="logo"><b>10X</b><span>FBS</span></span>
-      <span class="who">Тестовое задание<br><b>Владислав Семрак</b></span>
+      <div class="who">
+        <span>Тестовое задание, <b>Владислав Семрак</b></span>
+        <div class="contacts">
+          <a class="cbtn" href="https://t.me/Semrack" rel="noopener" data-goal="contact_telegram">Telegram</a>
+          <a class="cbtn" href="mailto:vladsemrack@gmail.com" data-goal="contact_email">vladsemrack@gmail.com</a>
+          <a class="cbtn" href="tel:+79513551875" data-goal="contact_phone">+7 951 355-18-75</a>
+        </div>
+      </div>
     </div>
     <h1>Лендинг раздела FBS: три концепции и исходник для сравнения</h1>
     <p class="lead">Я разобрал текущую страницу system10x.ru/fbs-a, нашёл точки роста и собрал три лендинга на разных методиках продаж. На каждом лендинге у блоков есть сноски: почему блок стоит именно здесь.</p>
     <div class="actions">
       <a class="btn" href="#concepts">Смотреть концепции</a>
       <a class="link" href="#growth">Точки роста исходника</a>
-    </div>
-    <div class="author"><span>Автор: <b>Владислав Семрак</b></span>
-      <div class="contacts">
-        <a class="cbtn" href="https://t.me/Semrack" rel="noopener" data-goal="contact_telegram">Telegram</a>
-        <a class="cbtn" href="mailto:vladsemrack@gmail.com" data-goal="contact_email">vladsemrack@gmail.com</a>
-        <a class="cbtn" href="tel:+79513551875" data-goal="contact_phone">+7 951 355-18-75</a>
-      </div>
     </div>
     <div class="facts">
       <div><b>12</b><span>вкладок раздела FBS сведены в 4 понятные боли</span></div>
