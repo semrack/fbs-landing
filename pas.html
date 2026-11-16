@@ -13,7 +13,7 @@ body{margin:0;background:#FFFFFF}
 a{color:#1762EF}a:hover{color:#0F4FC7}
 details summary{cursor:pointer;list-style:none}
 details summary::-webkit-details-marker{display:none}
-.why-wrap{padding:0}
+html .why-wrap{padding:0}
 .cbar{position:sticky;top:0;z-index:50;background:#1D1F20;color:#fff;font:500 14px/1.3 'Inter',-apple-system,'Segoe UI',sans-serif;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 16px;min-height:52px}
 .cbar a{color:#fff;text-decoration:none;display:inline-flex;align-items:center;gap:6px;min-height:36px}
 .cbar a:hover{text-decoration:underline;color:#fff}
@@ -69,14 +69,14 @@ html.notes-off .why-wrap{display:none}
       <span style="display: flex; align-items: center; gap: 12px"><b style="font-weight: 900; font-size: 24px; background: linear-gradient(90deg, #3562F1, #A25DE2 50%, #F2326F); -webkit-background-clip: text; background-clip: text; color: transparent">10X</b><span style="font-weight: 600">FBS</span></span>
       <a href="#start" style="background: #1762EF; color: #FFFFFF; text-decoration: none; font-weight: 600; font-size: 16px; padding: 12px 20px; border-radius: 8px">Найти потери</a>
     </header>
-<div class="why-wrap"><aside class="why " aria-label="Пояснение к блоку"><b class="why-label">Почему этот блок здесь</b><p>Хук — живой счётчик «с полуночи кабинет из примера недополучил N ₽». Это единственное движение на странице, и оно несёт смысл: потери копятся прямо сейчас. Методика PAS опирается на неприятие потерь: люди сильнее реагируют на потерю, чем на равную выгоду.</p></aside></div>
+<div class="why-wrap"><aside class="why " aria-label="Пояснение к блоку"><b class="why-label">Почему этот блок здесь</b><p>Хук — живой счётчик «с полуночи FBS-кабинет с заказами 69,7 млн ₽ в месяц недополучил N ₽». Масштаб кабинета назван сразу, чтобы цифра была понятна без контекста. Это единственное движение на странице, и оно несёт смысл: потери копятся прямо сейчас. Методика PAS опирается на неприятие потерь: люди сильнее реагируют на потерю, чем на равную выгоду.</p></aside></div>
 
     <h1 style="margin: 0; max-width: 980px; font-weight: 800; font-size: clamp(36px, 5vw, 68px); line-height: 1.04; letter-spacing: -0.03em">Потери на FBS копятся каждую минуту. Покажем, где именно.</h1>
     <div style="margin-top: 48px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr)); gap: 40px; align-items: end">
       <div role="status" aria-live="off" style="display: flex; flex-direction: column; gap: 8px; border-left: 4px solid #F2326F; padding-left: 24px">
-        <span style="font-size: 17px; color: #5C6470">С полуночи кабинет из примера недополучил</span>
+        <span style="font-size: 17px; color: #5C6470">С полуночи FBS-кабинет с заказами 69,7 млн ₽ в месяц недополучил</span>
         <span style="font-weight: 900; font-size: clamp(56px, 8vw, 112px); line-height: 0.95; letter-spacing: -0.04em; color: #F2326F; font-variant-numeric: tabular-nums"><span data-today>0</span> ₽</span>
-        <span style="font-size: 15px; color: #5C6470">заказы 69,7 млн ₽ в месяц, потери ≈1,07 ₽ в секунду</span>
+        <span style="font-size: 15px; color: #5C6470">по данным одного из кабинетов в Системе 10X: потери ≈1,07 ₽ в секунду</span>
       </div>
       <div style="display: flex; flex-direction: column; gap: 14px; align-items: flex-start">
         <p style="margin: 0; color: #5C6470">Система 10X сверяет остатки, сборку, отмены и маржу по каждому складу и фулфилменту через API Wildberries.</p>
@@ -136,7 +136,7 @@ html.notes-off .why-wrap{display:none}
         <div style="display: flex; justify-content: space-between; gap: 12px"><span style="color: #C3C7CE">Год</span><b style="font-size: 34px; color: #F2326F">33,4 млн ₽</b></div>
         <span aria-hidden="true" style="display: block; height: 14px; width: 100%; border-radius: 7px; background: linear-gradient(90deg, #3562F1, #A25DE2 50%, #F2326F)"></span>
       </div>
-      <span style="font-size: 14px; color: #9EA4AD">Расчёт по кабинету из примера при сохранении текущих потерь.</span>
+      <span style="font-size: 14px; color: #9EA4AD">Расчёт для кабинета с заказами 69,7 млн ₽ в месяц, если потери не сократить.</span>
     </div>
   </div>
 </section>
@@ -222,7 +222,7 @@ html.notes-off .why-wrap{display:none}
 <div class="why-wrap"><aside class="why " aria-label="Пояснение к блоку"><b class="why-label">Почему этот блок здесь</b><p>Финал возвращает счётчик и замыкает петлю с хуком: «пока вы читали, кабинет потерял ещё…». Одно действие и запасной канал.</p></aside></div>
 
   <div style="max-width: 1180px; margin: 0 auto; background: #1762EF; color: #FFFFFF; border-radius: 28px; padding: 64px 40px; display: flex; flex-direction: column; align-items: center; gap: 22px; text-align: center">
-    <span style="font-size: 17px; color: #DCE7FD">Пока вы читали эту страницу, кабинет из примера потерял ещё</span>
+    <span style="font-size: 17px; color: #DCE7FD">Пока вы читали эту страницу, кабинет с заказами 69,7 млн ₽ в месяц потерял ещё</span>
     <span style="font-weight: 900; font-size: clamp(48px, 6vw, 84px); line-height: 1; letter-spacing: -0.04em; font-variant-numeric: tabular-nums"><span data-session>1</span> ₽</span>
     <h2 style="margin: 0; font-weight: 800; font-size: clamp(24px, 2.6vw, 34px); line-height: 1.2">Узнайте, сколько теряет ваш кабинет</h2>
     <a href="https://t.me/tenXsupport_bot" style="background: #FFFFFF; color: #1762EF; text-decoration: none; font-weight: 700; font-size: 19px; padding: 20px 32px; border-radius: 10px" data-goal="concept_pas_telegram">Найти потери в моём кабинете</a>

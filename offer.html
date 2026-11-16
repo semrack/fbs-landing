@@ -15,7 +15,7 @@ a:focus-visible,input:focus-visible{outline:3px solid #A25DE2;outline-offset:2px
 input[type=range]{accent-color:#1762EF}
 details summary{cursor:pointer;list-style:none}
 details summary::-webkit-details-marker{display:none}
-.why-wrap{padding:0}@media (max-width:640px){[style*="1px dashed #C9CFD8"]{flex-wrap:wrap;gap:2px 16px!important}[style*="1px dashed #C9CFD8"] span:last-child{white-space:normal!important}}
+html .why-wrap{padding:0}@media (max-width:640px){[style*="1px dashed #C9CFD8"]{flex-wrap:wrap;gap:2px 16px!important}[style*="1px dashed #C9CFD8"] span:last-child{white-space:normal!important}}
 .cbar{position:sticky;top:0;z-index:50;background:#1D1F20;color:#fff;font:500 14px/1.3 'Inter',-apple-system,'Segoe UI',sans-serif;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 16px;min-height:52px}
 .cbar a{color:#fff;text-decoration:none;display:inline-flex;align-items:center;gap:6px;min-height:36px}
 .cbar a:hover{text-decoration:underline;color:#fff}
@@ -113,7 +113,7 @@ html.notes-off .why-wrap{display:none}
       <div style="background: #FFFFFF; border-radius: 18px; padding: 26px; display: flex; flex-direction: column; gap: 10px; border-top: 4px solid #3562F1">
         <b style="font-size: 15px; color: #3562F1">Результат ↑</b>
         <b style="font-size: 20px; line-height: 1.3">Видите все деньги, которые FBS теряет</b>
-        <span style="color: #5C6470">В кабинете из примера: 2,78 млн ₽ в месяц, ≈4% заказов.</span>
+        <span style="color: #5C6470">В кабинете с заказами 69,7 млн ₽ в месяц это 2,78 млн ₽ потерь, ≈4% заказов.</span>
       </div>
       <div style="background: #FFFFFF; border-radius: 18px; padding: 26px; display: flex; flex-direction: column; gap: 10px; border-top: 4px solid #3562F1">
         <b style="font-size: 15px; color: #3562F1">Вероятность ↑</b>
@@ -197,7 +197,7 @@ html.notes-off .why-wrap{display:none}
         <input id="gmv2" type="range" min="3" max="150" step="1" value="30" style="width: 100%; height: 44px; margin: 0">
         <span style="color: #5C6470">Возможные потери в месяц</span>
         <b style="font-family: 'Unbounded', sans-serif; font-size: 40px; color: #F2326F">≈ <span data-loss></span></b>
-        <span style="font-size: 13px; color: #4A5260">Оценка по примеру (≈4% заказов). Точную сумму покажет тест.</span>
+        <span style="font-size: 13px; color: #4A5260">Оценка по доле потерь кабинета с заказами 69,7 млн ₽ в месяц (≈4%). Точную сумму покажет тест.</span>
       </div>
     </div>
   </div>
