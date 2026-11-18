@@ -3,3 +3,4 @@ __pycache__/
 gsc-key*.json
 search-report.*
 audit-report.*
+.keys/

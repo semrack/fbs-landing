@@ -2,9 +2,9 @@
 """Данные поиска для semrack.ru: Google Search Console + Яндекс.Вебмастер → отчёт с точками роста.
 
 Установка (один раз):  pip install google-auth requests
-Доступы (хранятся вне репозитория):
-  GSC_KEY_FILE            путь к JSON-ключу служебного аккаунта Google (по умолчанию ~/.semrack/gsc-key.json)
-  YANDEX_WEBMASTER_TOKEN  OAuth-токен Вебмастера (или файл ~/.semrack/yandex-token.txt)
+Доступы (никогда не коммитятся — папка .keys/ в .gitignore):
+  .keys/gsc-key.json      JSON-ключ служебного аккаунта Google (или ~/.semrack/gsc-key.json, или env GSC_KEY_FILE)
+  .keys/yandex-token.txt  OAuth-токен Вебмастера (или ~/.semrack/yandex-token.txt, или env YANDEX_WEBMASTER_TOKEN)
 Запуск:
   python3 _tools/search_data.py              # последние 28 дней
   python3 _tools/search_data.py --days 90
@@ -17,10 +17,17 @@ SITE = "https://semrack.ru/"
 GSC_PROPERTY = os.environ.get("GSC_PROPERTY", SITE)          # для доменного ресурса: sc-domain:semrack.ru
 YA_HOST = "https:semrack.ru:443"
 HOME = Path.home() / ".semrack"
+REPO_KEYS = Path(__file__).resolve().parent.parent / ".keys"
+
+
+def keyfile(name):
+    for d in (REPO_KEYS, HOME):
+        if (d / name).exists(): return d / name
+    return REPO_KEYS / name
 
 
 def gsc_rows(days):
-    key = Path(os.environ.get("GSC_KEY_FILE", HOME / "gsc-key.json")).expanduser()
+    key = Path(os.environ.get("GSC_KEY_FILE", keyfile("gsc-key.json"))).expanduser()
     if not key.exists():
         print(f"[GSC] нет ключа {key} — пропускаю"); return None
     from google.oauth2 import service_account
@@ -51,7 +58,7 @@ def requests_quote(s):
 
 def ya_rows(days):
     tok = os.environ.get("YANDEX_WEBMASTER_TOKEN")
-    f = HOME / "yandex-token.txt"
+    f = keyfile("yandex-token.txt")
     if not tok and f.exists(): tok = f.read_text().strip()
     if not tok:
         print("[Вебмастер] нет токена — пропускаю"); return None
