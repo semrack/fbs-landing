@@ -69,11 +69,25 @@ def ya_rows(days):
     if r.status_code != 200:
         print("[Вебмастер] ошибка авторизации", r.status_code, r.text[:300]); return None
     uid = r.json()["user_id"]
+    # ищем сайт среди добавленных в этот аккаунт Вебмастера
+    r = requests.get(f"{base}/user/{uid}/hosts", headers=h, timeout=30)
+    hosts = r.json().get("hosts", []) if r.status_code == 200 else []
+    mine = [x for x in hosts if "semrack.ru" in x.get("host_id", "")]
+    if not mine:
+        print(f"[Вебмастер] в аккаунте (user_id {uid}) нет semrack.ru. Сайты аккаунта: "
+              + (", ".join(x.get("host_id", "?") for x in hosts) or "нет ни одного")
+              + ". Получите токен под тем Яндекс-аккаунтом, где подтверждён semrack.ru.")
+        return None
+    best = sorted(mine, key=lambda x: (not x.get("verified"), not x["host_id"].startswith("https")))[0]
+    host = best["host_id"]
+    print(f"[Вебмастер] сайт {host}, подтверждён: {best.get('verified')}")
+    if not best.get("verified"):
+        print("[Вебмастер] сайт добавлен, но права не подтверждены — подтвердите в Вебмастере."); return None
     end = dt.date.today()
     start = end - dt.timedelta(days=days)
     params = [("order_by", "TOTAL_SHOWS"), ("query_indicator", "TOTAL_SHOWS"), ("query_indicator", "TOTAL_CLICKS"),
               ("query_indicator", "AVG_SHOW_POSITION"), ("date_from", str(start)), ("date_to", str(end)), ("limit", 500)]
-    r = requests.get(f"{base}/user/{uid}/hosts/{YA_HOST}/search-queries/popular", headers=h, params=params, timeout=30)
+    r = requests.get(f"{base}/user/{uid}/hosts/{host}/search-queries/popular", headers=h, params=params, timeout=30)
     if r.status_code != 200:
         print("[Вебмастер] ошибка", r.status_code, r.text[:300]); return None
     out = []
@@ -83,7 +97,7 @@ def ya_rows(days):
         out.append(dict(src="Яндекс", query=q["query_text"], page="", shows=shows, clicks=clicks,
                         ctr=clicks / shows * 100 if shows else 0, pos=ind.get("AVG_SHOW_POSITION") or 0))
     # статус индексации
-    r = requests.get(f"{base}/user/{uid}/hosts/{YA_HOST}/summary", headers=h, timeout=30)
+    r = requests.get(f"{base}/user/{uid}/hosts/{host}/summary", headers=h, timeout=30)
     if r.status_code == 200:
         sm = r.json()
         print(f"[Вебмастер] в поиске страниц: {sm.get('searchable_pages_count')}, ИКС: {sm.get('sqi')}")
