@@ -1,1 +1,5 @@
 __pycache__/
+*.json.key
+gsc-key*.json
+search-report.*
+audit-report.*
