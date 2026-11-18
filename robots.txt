@@ -1,9 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /fbs
-Disallow: /a
-Disallow: /offer
-Disallow: /pas
-Disallow: /original
 
 Sitemap: https://semrack.ru/sitemap.xml
