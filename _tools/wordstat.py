@@ -18,6 +18,8 @@ import requests
 ROOT = Path(__file__).resolve().parent.parent
 KEYS = ROOT / ".keys"
 URL = "https://searchapi.api.cloud.yandex.net/v2/wordstat/topRequests"
+import os
+OUT = Path(os.environ.get("WORDSTAT_OUT", str(ROOT / "wordstat-report")))
 
 SEEDS = [
     "калькулятор маркетплейс", "калькулятор wildberries", "калькулятор вб", "калькулятор озон",
@@ -94,13 +96,13 @@ def main():
                    for q, (c, src) in seen.items()), key=lambda r: -r["count"])
     sel = [r for r in rows if r["seller"]]
     gaps = [r for r in sel if not r["pages"]]
-    (ROOT / "wordstat-report.json").write_text(json.dumps(rows, ensure_ascii=False, indent=1), encoding="utf-8")
+    Path(str(OUT) + ".json").write_text(json.dumps(rows, ensure_ascii=False, indent=1), encoding="utf-8")
     tr = lambda r: (f"<tr><td>{html.escape(r['query'])}</td><td>{r['count']:,}</td>"
                     f"<td>{', '.join(r['pages']) or '<b>нет страницы</b>'}</td></tr>").replace(",", " ")
     css = ("body{font:15px/1.5 system-ui,sans-serif;max-width:1000px;margin:30px auto;padding:0 16px}"
            "table{border-collapse:collapse;width:100%}td,th{border-bottom:1px solid #e4e7ec;padding:5px 8px;text-align:left}th{background:#f6f7f9}")
     head = "<tr><th>Запрос</th><th>Частота / мес</th><th>Страница сайта</th></tr>"
-    (ROOT / "wordstat-report.html").write_text(
+    Path(str(OUT) + ".html").write_text(
         f'<!doctype html><html lang="ru"><meta charset="utf-8"><title>Вордстат</title><style>{css}</style>'
         f"<h1>Вордстат: запросы селлеров</h1><p>Всего фраз: {len(rows)}, запросов продавцов: {len(sel)}, из них без страницы: {len(gaps)}</p>"
         f"<h2>Запросы продавцов без страницы на сайте</h2><table>{head}{''.join(tr(r) for r in gaps[:150])}</table>"
