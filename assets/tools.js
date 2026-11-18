@@ -70,6 +70,50 @@
     }
   };
 
+  // Себестоимость единицы товара
+  TOOLS['cost'] = function () {
+    var qty = Math.max(n('t-qty'), 1), defect = Math.min(n('t-defect'), 99) / 100;
+    var batch = n('t-buy') * qty + n('t-delivery') + n('t-customs') + n('t-batch-other');
+    var perUnitVar = n('t-pack') + n('t-mark') + n('t-ff');
+    var good = qty * (1 - defect);
+    var unit = good > 0 ? batch / good + perUnitVar * qty / good : NaN;
+    set('o-unit', rub(unit, 2), 'big');
+    set('o-batch', rub(batch + perUnitVar * qty));
+    set('o-good', num(good, 0) + ' шт');
+    set('o-markup', n('t-buy') > 0 ? pct((unit / n('t-buy') - 1) * 100) : '—');
+  };
+  // ДРР
+  TOOLS['drr'] = function () {
+    var ads = n('t-ads'), rev = n('t-rev');
+    set('o-drr', rev > 0 ? pct(ads / rev * 100) : '—', 'big');
+    var P = n('t-price'), pre = n('t-pre');
+    var maxDrr = P > 0 ? pre / P * 100 : NaN;
+    set('o-max', pct(maxDrr));
+    var cur = rev > 0 ? ads / rev * 100 : NaN;
+    set('o-left', isFinite(cur) && isFinite(maxDrr) ? rub(pre - P * cur / 100) : '—');
+    set('o-verdict', !isFinite(cur) || !isFinite(maxDrr) ? '' : cur < maxDrr ? 'Реклама окупается: ДРР ниже допустимого' : 'Реклама съедает всю прибыль: ДРР выше допустимого');
+  };
+  // НДС
+  TOOLS['vat'] = function () {
+    var s = n('t-sum'), r = n('t-rate'), mode = $('t-mode').value;
+    var vat, net, gross;
+    if (mode === 'out') { vat = s * r / (100 + r); net = s - vat; gross = s; }
+    else { vat = s * r / 100; net = s; gross = s + vat; }
+    set('o-vat', rub(vat, 2), 'big');
+    set('o-net', rub(net, 2));
+    set('o-gross', rub(gross, 2));
+  };
+  // Оборачиваемость
+  TOOLS['turnover'] = function () {
+    var stock = n('t-stock'), sold = n('t-sold'), days = Math.max(n('t-days'), 1);
+    var perDay = sold / days;
+    var d = perDay > 0 ? stock / perDay : NaN;
+    set('o-days', isFinite(d) ? num(d, 1) + ' дн.' : '—', 'big');
+    set('o-times', stock > 0 ? num(sold / stock, 2) + ' раза' : '—');
+    set('o-perday', num(perDay, 1) + ' шт/день');
+    set('o-store', isFinite(d) ? rub(n('t-store') * d, 2) : '—');
+  };
+
   var fn = TOOLS[root.getAttribute('data-tool')];
   if (!fn) return;
   root.addEventListener('input', fn);

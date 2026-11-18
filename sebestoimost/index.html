@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Калькулятор себестоимости товара для маркетплейса — формула</title>
+<meta name="description" content="Расчёт себестоимости товара для Wildberries и Ozon: закупка, доставка, таможня, упаковка, маркировка, фулфилмент и брак. Формула, что включать, частые ошибки.">
+<link rel="canonical" href="https://semrack.ru/sebestoimost/">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:site_name" content="Калькулятор селлера">
+<meta property="og:title" content="Калькулятор себестоимости товара для маркетплейса — формула">
+<meta property="og:description" content="Расчёт себестоимости товара для Wildberries и Ozon: закупка, доставка, таможня, упаковка, маркировка, фулфилмент и брак. Формула, что включать, частые ошибки.">
+<meta property="og:url" content="https://semrack.ru/sebestoimost/">
+<meta property="og:image" content="https://semrack.ru/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/style.css?v=1">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "@id": "https://semrack.ru/sebestoimost/#page", "url": "https://semrack.ru/sebestoimost/", "name": "Калькулятор себестоимости товара для маркетплейса — формула", "description": "Расчёт себестоимости товара для Wildberries и Ozon: закупка, доставка, таможня, упаковка, маркировка, фулфилмент и брак. Формула, что включать, частые ошибки.", "inLanguage": "ru", "dateModified": "2026-11-18", "datePublished": "2026-11-18", "isPartOf": {"@type": "WebSite", "name": "Калькулятор селлера", "url": "https://semrack.ru/"}, "publisher": {"@type": "Organization", "name": "Калькулятор селлера", "url": "https://semrack.ru/"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Главная", "item": "https://semrack.ru/"}, {"@type": "ListItem", "position": 2, "name": "Себестоимость", "item": "https://semrack.ru/sebestoimost/"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Как посчитать себестоимость товара?", "acceptedAnswer": {"@type": "Answer", "text": "Сложите все расходы на партию — закупку, доставку, таможню, упаковку, маркировку, фулфилмент — и разделите на количество годных к продаже штук."}}, {"@type": "Question", "name": "Входит ли комиссия маркетплейса в себестоимость?", "acceptedAnswer": {"@type": "Answer", "text": "В управленческом учёте селлеры обычно считают её отдельно: себестоимость — это то, во что вам обошёлся товар до отгрузки на маркетплейс. Комиссию, логистику и хранение учитывают в юнит-экономике."}}, {"@type": "Question", "name": "Как учитывать брак в себестоимости?", "acceptedAnswer": {"@type": "Answer", "text": "Делите расходы на партию не на всё количество, а только на годные штуки. Калькулятор делает это автоматически по проценту брака."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Калькулятор себестоимости товара", "url": "https://semrack.ru/sebestoimost/", "applicationCategory": "BusinessApplication", "operatingSystem": "Any", "inLanguage": "ru", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "RUB"}}</script>
+<script src="/assets/consent.js?v=1" defer></script>
+</head>
+<body>
+<header class="hdr"><div class="wrap"><a class="logo" href="/"><i aria-hidden="true"></i>Калькулятор селлера</a><nav class="nav" aria-label="Разделы"><a href="/">Калькулятор</a><a href="/wildberries/">Wildberries</a><a href="/ozon/">Ozon</a><a href="/yandex-market/">Яндекс Маркет</a><a href="/nalogi/">Налоги</a><a href="/o-proekte/">О проекте</a></nav></div></header>
+<main>
+<div class="wrap"><nav class="crumbs" aria-label="Хлебные крошки"><a href="/">Главная</a> → <span>Себестоимость</span></nav>
+<section class="hero"><h1>Калькулятор себестоимости товара</h1><p class="lead">Посчитайте, во сколько вам обходится одна штука товара до отгрузки на маркетплейс: закупка, доставка, упаковка, маркировка и брак.</p>
+<p class="upd">Обновлено 18 ноября 2026 · <a href="/o-proekte/">Методика расчёта</a></p><div class="answer"><strong>Коротко</strong>Себестоимость единицы = все расходы на партию (закупка, доставка, таможня, упаковка, маркировка, фулфилмент) ÷ количество годных к продаже штук. Комиссию и логистику маркетплейса считают отдельно.</div></section>
+<section class="calc" id="tool" data-tool="cost" aria-label="Калькулятор"><form class="panel" onsubmit="return false">
+<fieldset><legend>Партия</legend><div class="grid">
+<div><label for="t-buy">Закупочная цена за штуку</label><div class="inp"><input id="t-buy" type="number" inputmode="decimal" step="any" min="0" value="300"><span>₽</span></div></div><div><label for="t-qty">Штук в партии</label><div class="inp"><input id="t-qty" type="number" inputmode="decimal" step="any" min="0" value="500"><span>шт</span></div></div>
+<div><label for="t-delivery">Доставка партии</label><div class="inp"><input id="t-delivery" type="number" inputmode="decimal" step="any" min="0" value="15000"><span>₽</span></div><p class="hint">От поставщика до вашего склада или фулфилмента</p></div><div><label for="t-customs">Таможня и пошлины на партию</label><div class="inp"><input id="t-customs" type="number" inputmode="decimal" step="any" min="0" value="0"><span>₽</span></div></div>
+<div><label for="t-batch-other">Прочее на партию</label><div class="inp"><input id="t-batch-other" type="number" inputmode="decimal" step="any" min="0" value="0"><span>₽</span></div><p class="hint">Сертификация, фотосъёмка, образцы</p></div><div><label for="t-defect">Брак и потери</label><div class="inp"><input id="t-defect" type="number" inputmode="decimal" step="any" min="0" value="2"><span>%</span></div></div>
+</div></fieldset>
+<fieldset><legend>На каждую единицу</legend><div class="grid">
+<div><label for="t-pack">Упаковка</label><div class="inp"><input id="t-pack" type="number" inputmode="decimal" step="any" min="0" value="15"><span>₽</span></div></div><div><label for="t-mark">Маркировка и этикетки</label><div class="inp"><input id="t-mark" type="number" inputmode="decimal" step="any" min="0" value="5"><span>₽</span></div></div>
+<div><label for="t-ff">Фулфилмент</label><div class="inp"><input id="t-ff" type="number" inputmode="decimal" step="any" min="0" value="25"><span>₽</span></div><p class="hint">Приёмка, сборка, упаковка у фулфилмента</p></div>
+</div></fieldset></form>
+<div class="panel res" aria-live="polite">
+<div class="upd">Себестоимость одной штуки</div><div class="big" id="o-unit">—</div>
+<div class="kpis"><div class="kpi"><b id="o-batch">—</b><span>вся партия под ключ</span></div><div class="kpi"><b id="o-good">—</b><span>годных к продаже</span></div><div class="kpi"><b id="o-markup">—</b><span>к закупочной цене</span></div></div>
+<p class="note">Комиссии, логистику и хранение маркетплейса в себестоимость не включаем: их считает <a href="/">калькулятор юнит-экономики</a>. Подставьте туда полученную себестоимость.</p></div></section>
+<article class="content narrow">
+<h2>Как рассчитать себестоимость товара для маркетплейса</h2>
+<div class="formula">Себестоимость единицы = (Закупка партии + Доставка + Таможня + Прочее на партию + Расходы на единицу × Количество) ÷ Годные к продаже штуки</div>
+<p style="margin-top:1em">Делить нужно не на всю партию, а только на товар, который можно продать: брак и потери увеличивают себестоимость остальных штук. Партия 500 штук по 300 ₽ с доставкой 15 000 ₽, упаковкой, маркировкой и фулфилментом 45 ₽ на штуку и 2% брака даёт себестоимость около 383 ₽ — на 28% выше закупочной цены.</p>
+
+<h2>Что включать в себестоимость</h2>
+<div class="tblwrap"><table>
+<tr><th>Включать</th><th>Не включать — считается отдельно</th></tr>
+<tr><td>Закупочная цена товара</td><td>Комиссия маркетплейса</td></tr>
+<tr><td>Доставка от поставщика, таможня, пошлины</td><td>Логистика маркетплейса к покупателю и возвраты</td></tr>
+<tr><td>Упаковка, маркировка «Честный знак», этикетки</td><td>Хранение на складе маркетплейса</td></tr>
+<tr><td>Услуги фулфилмента</td><td>Реклама и продвижение</td></tr>
+<tr><td>Брак и потери при поставке</td><td>Налоги</td></tr>
+</table></div>
+<p>Такое разделение удобно: себестоимость меняется только при новой закупке, а тарифы маркетплейса — несколько раз в год. Расходы из правой колонки учитывает <a href="/">калькулятор юнит-экономики</a>.</p>
+
+<h2>Частые ошибки при калькуляции себестоимости</h2>
+<ol>
+<li><b>Забыть доставку от поставщика.</b> При закупке в Китае доставка и таможня легко добавляют 15–40% к цене товара.</li>
+<li><b>Не учесть брак.</b> Если 3% товара не доедет или окажется бракованным, остальные 97% должны окупить всю партию.</li>
+<li><b>Считать по старому курсу.</b> Для импортного товара пересчитывайте себестоимость по курсу на дату оплаты поставщику.</li>
+<li><b>Смешивать себестоимость и расходы маркетплейса.</b> Тогда при изменении тарифов придётся пересчитывать всё заново.</li>
+</ol>
+<p class="src">Состав расходов и маркировка — в справке маркетплейсов: <a href="https://seller.wildberries.ru/" rel="nofollow">Wildberries</a>, <a href="https://seller-edu.ozon.ru/" rel="nofollow">Ozon</a>; правила маркировки — на сайте <a href="https://честныйзнак.рф/" rel="nofollow">«Честного знака»</a>.</p>
+<h2 id="faq">Частые вопросы</h2><details><summary>Как посчитать себестоимость товара?</summary><p>Сложите все расходы на партию — закупку, доставку, таможню, упаковку, маркировку, фулфилмент — и разделите на количество годных к продаже штук.</p></details><details><summary>Входит ли комиссия маркетплейса в себестоимость?</summary><p>В управленческом учёте селлеры обычно считают её отдельно: себестоимость — это то, во что вам обошёлся товар до отгрузки на маркетплейс. Комиссию, логистику и хранение учитывают в юнит-экономике.</p></details><details><summary>Как учитывать брак в себестоимости?</summary><p>Делите расходы на партию не на всё количество, а только на годные штуки. Калькулятор делает это автоматически по проценту брака.</p></details></article>
+</div>
+</main>
+<footer class="ftr"><div class="wrap"><div>© 2026 Калькулятор селлера. Расчёты справочные и не заменяют тарифы маркетплейсов и консультацию бухгалтера.</div>
+<div><a href="/wildberries/logistika/">Логистика WB</a> · <a href="/vykup/">Процент выкупа</a> · <a href="/nacenka-i-marzha/">Наценка и маржа</a> · <a href="/fbo-ili-fbs/">FBO или FBS</a> · <a href="/sebestoimost/">Себестоимость</a> · <a href="/drr/">ДРР</a> · <a href="/nds-kalkulyator/">Калькулятор НДС</a> · <a href="/oborachivaemost/">Оборачиваемость</a> · <a href="/o-proekte/">О проекте и методика</a> · <a href="/politika/">Политика конфиденциальности</a> · <a href="#" data-cookie-settings>Настройки cookie</a></div></div></footer>
+<script src="/assets/tools.js?v=1" defer></script>
+</body>
+</html>

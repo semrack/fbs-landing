@@ -30,15 +30,25 @@ SEEDS = [
 # какие слова означают, что тема уже покрыта страницей
 PAGES = {
     "/": ["юнит", "калькулятор маркетплейс", "прибыл", "калькулятор селлер"],
-    "/wildberries/": ["wildberries", "вайлдберриз", "вб ", " вб", "wb"],
-    "/wildberries/logistika/": ["логистик"],
+    "/wildberries/": ["wildberries", "вайлдберриз", "валберис", "вб ", " вб", "wb"],
+    "/wildberries/logistika/": ["логистика вб", "логистика wildberries", "логистика вайлдберриз", "вб логистика", "стоимость логистики"],
     "/ozon/": ["озон", "ozon"],
-    "/yandex-market/": ["яндекс маркет", "маркет"],
-    "/nalogi/": ["ндс", "усн", "налог"],
+    "/yandex-market/": ["яндекс маркет", "маркетплейс яндекс"],
+    "/nalogi/": ["усн", "налог"],
+    "/nds-kalkulyator/": ["ндс"],
     "/vykup/": ["выкуп"],
-    "/nacenka-i-marzha/": ["наценк", "марж"],
+    "/nacenka-i-marzha/": ["наценк", "марж", "рентабел"],
     "/fbo-ili-fbs/": ["fbo", "fbs", "фбо", "фбс"],
+    "/sebestoimost/": ["себестоим", "калькуляци"],
+    "/drr/": ["дрр", "drr", "доля рекламных"],
+    "/oborachivaemost/": ["оборачива"],
 }
+
+# запросы продавцов и явный шум (покупатели, банк, вакансии, посторонние калькуляторы)
+SELLER = re.compile(r"калькул|комисс|логистик|тариф|селлер|продав|юнит|марж|наценк|выкуп|fbo|fbs|фбо|фбс|ндс|усн|"
+                    r"себестоим|дрр|drr|оборачива|хранени|рентабел|прибыл|квв|остатк|поставк|приемк|приёмк|эквайр|невыкуп|штраф")
+NOISE = re.compile(r"купить|пвз|пункт|до скольки|со скольки|работает|джоб|job|банк|снять|снятие|пополн|положить|заказ|"
+                   r"посылк|кбжу|бжу|роста|дат|зп|кадастр|земел|участк|ламода|выкупные платеж|ооо ")
 
 
 def read(name):
@@ -75,12 +85,15 @@ def main():
         res, assoc = top(s, key, folder)
         print(f"{s}: {len(res)} запросов" + (f", всего показов фразы: {res[0][1]}" if res else ""))
         for q, c in res:
-            seen[q] = max(seen.get(q, 0), c)
+            seen[q] = (max(seen.get(q, (0, ""))[0], c), "top")
         for q, c in assoc:
-            seen.setdefault(q, c)
+            seen.setdefault(q, (c, "similar"))
         time.sleep(0.3)
-    rows = sorted(({"query": q, "count": c, "pages": cover(q)} for q, c in seen.items()), key=lambda r: -r["count"])
-    gaps = [r for r in rows if not r["pages"]]
+    rows = sorted(({"query": q, "count": c, "source": src, "pages": cover(q),
+                    "seller": bool(SELLER.search(q.lower())) and not NOISE.search(q.lower())}
+                   for q, (c, src) in seen.items()), key=lambda r: -r["count"])
+    sel = [r for r in rows if r["seller"]]
+    gaps = [r for r in sel if not r["pages"]]
     (ROOT / "wordstat-report.json").write_text(json.dumps(rows, ensure_ascii=False, indent=1), encoding="utf-8")
     tr = lambda r: (f"<tr><td>{html.escape(r['query'])}</td><td>{r['count']:,}</td>"
                     f"<td>{', '.join(r['pages']) or '<b>нет страницы</b>'}</td></tr>").replace(",", " ")
@@ -89,10 +102,11 @@ def main():
     head = "<tr><th>Запрос</th><th>Частота / мес</th><th>Страница сайта</th></tr>"
     (ROOT / "wordstat-report.html").write_text(
         f'<!doctype html><html lang="ru"><meta charset="utf-8"><title>Вордстат</title><style>{css}</style>'
-        f"<h1>Вордстат: запросы селлеров</h1><p>Фраз: {len(rows)}, без страницы: {len(gaps)}</p>"
-        f"<h2>Не покрыты сайтом</h2><table>{head}{''.join(tr(r) for r in gaps[:150])}</table>"
-        f"<h2>Все запросы</h2><table>{head}{''.join(tr(r) for r in rows[:800])}</table></html>", encoding="utf-8")
-    print(f"Готово: wordstat-report.html — {len(rows)} запросов, без страницы {len(gaps)}")
+        f"<h1>Вордстат: запросы селлеров</h1><p>Всего фраз: {len(rows)}, запросов продавцов: {len(sel)}, из них без страницы: {len(gaps)}</p>"
+        f"<h2>Запросы продавцов без страницы на сайте</h2><table>{head}{''.join(tr(r) for r in gaps[:150])}</table>"
+        f"<h2>Запросы продавцов</h2><table>{head}{''.join(tr(r) for r in sel[:600])}</table>"
+        f"<h2>Остальное (покупатели, шум, похожие запросы)</h2><table>{head}{''.join(tr(r) for r in rows if not r['seller'])}</table></html>", encoding="utf-8")
+    print(f"Готово: wordstat-report.html — {len(rows)} фраз, продавцов {len(sel)}, без страницы {len(gaps)}")
 
 
 if __name__ == "__main__":

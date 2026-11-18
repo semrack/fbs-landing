@@ -9,7 +9,9 @@ from pages import PAGES, SITE, UPDATED_ISO
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 TOOLS_LINKS = ('<a href="/wildberries/logistika/">Логистика WB</a> · <a href="/vykup/">Процент выкупа</a> · '
-               '<a href="/nacenka-i-marzha/">Наценка и маржа</a> · <a href="/fbo-ili-fbs/">FBO или FBS</a>')
+               '<a href="/nacenka-i-marzha/">Наценка и маржа</a> · <a href="/fbo-ili-fbs/">FBO или FBS</a> · '
+               '<a href="/sebestoimost/">Себестоимость</a> · <a href="/drr/">ДРР</a> · '
+               '<a href="/nds-kalkulyator/">Калькулятор НДС</a> · <a href="/oborachivaemost/">Оборачиваемость</a>')
 NAV = [("/", "Калькулятор"), ("/wildberries/", "Wildberries"), ("/ozon/", "Ozon"),
        ("/yandex-market/", "Яндекс Маркет"), ("/nalogi/", "Налоги"), ("/o-proekte/", "О проекте")]
 
