@@ -113,7 +113,7 @@ def audit_page(url, status, headers, body, dt):
     first = paras[0] if paras else ""
     ext = [h for h, _ in p.links if urlparse(h).netloc and urlparse(h).netloc != urlparse(url).netloc]
     has_date = bool(re.search(r"(обновлено|updated|дата)", all_text, re.I)) or "dateModified" in " ".join(p.jsonld)
-    has_author = "author" in " ".join(p.jsonld) or bool(re.search(r"автор", all_text, re.I))
+    has_author = any(k in " ".join(p.jsonld) for k in ("\"author\"", "\"publisher\"")) or bool(re.search(r"автор", all_text, re.I))
     q_heads = [t for t in h2 + [t for k, t in p.h if k == "h3"] if t.strip().endswith("?")]
     faq_items = p.details
     c = [
@@ -131,7 +131,7 @@ def audit_page(url, status, headers, body, dt):
         check(dt < 1.5, 2, "SEO", "speed", f"Ответ сервера: {dt:.2f} с", "Цель — меньше 1,5 с"),
         check(len(body) < 300_000, 1, "SEO", "weight", f"HTML: {len(body)//1024} КБ"),
         check(p.jsonld and not ld_err, 3, "GEO", "jsonld", f"JSON-LD: {', '.join(sorted(set(types))) or 'нет'}" + (f", ошибок {ld_err}" if ld_err else ""), "Добавьте schema.org в JSON-LD"),
-        check(has_author, 2, "GEO", "author", "Автор " + ("указан" if has_author else "не указан"), "Укажите автора и ссылку на страницу о нём (E-E-A-T)"),
+        check(has_author, 2, "GEO", "author", "Автор или издатель " + ("указан" if has_author else "не указан"), "Укажите автора или издателя (author/publisher в schema.org) и страницу «О проекте»"),
         check(has_date, 2, "GEO", "date", "Дата обновления " + ("есть" if has_date else "нет"), "Покажите дату обновления и dateModified в разметке"),
         check(len(ext) >= 1, 2, "GEO", "sources", f"Внешних ссылок на источники: {len(ext)}", "Сошлитесь на первоисточники — AI-поиск это ценит"),
         check(first and words(first) <= 60, 3, "AEO", "answer", f"Первый абзац: {words(first)} слов", "Начните с короткого ответа на главный вопрос (до 60 слов)"),

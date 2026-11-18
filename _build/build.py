@@ -87,7 +87,7 @@ def page_html(p):
         "name": p["title"], "description": p["description"], "inLanguage": "ru",
         "dateModified": UPDATED_ISO, "datePublished": SITE["published_iso"],
         "isPartOf": {"@type": "WebSite", "name": SITE["name"], "url": SITE["base"] + "/"},
-        "author": {"@type": "Person", "name": SITE["author"], "url": SITE["base"] + "/o-proekte/"},
+        "publisher": {"@type": "Organization", "name": SITE["name"], "url": SITE["base"] + "/"},
     }]
     if p["path"] != "/":
         crumbs = (f'<nav class="crumbs" aria-label="Хлебные крошки"><a href="/">Главная</a> → '
@@ -139,13 +139,13 @@ def page_html(p):
 <main>
 <div class="wrap">{crumbs}
 <section class="hero"><h1>{p["h1"]}</h1><p class="lead">{p["lead"]}</p>
-<p class="upd">Обновлено {SITE["updated_human"]} · Автор: <a href="/o-proekte/">{SITE["author"]}</a></p>{answer}</section>
+<p class="upd">Обновлено {SITE["updated_human"]} · <a href="/o-proekte/">Методика расчёта</a></p>{answer}</section>
 {calc}
 <article class="content narrow">{p["body"]}{faq}</article>
 </div>
 </main>
-<footer class="ftr"><div class="wrap"><div>© 2026 {SITE["name"]} · {SITE["author"]}. Расчёты справочные и не заменяют тарифы маркетплейсов и консультацию бухгалтера.</div>
-<div><a href="/o-proekte/">О проекте и методика</a> · <a href="https://t.me/Semrack">Telegram</a></div></div></footer>
+<footer class="ftr"><div class="wrap"><div>© 2026 {SITE["name"]}. Расчёты справочные и не заменяют тарифы маркетплейсов и консультацию бухгалтера.</div>
+<div><a href="/o-proekte/">О проекте и методика</a></div></div></footer>
 {script}
 </body>
 </html>
@@ -166,7 +166,7 @@ def main():
         f.write(f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>\n')
     # llms.txt — краткая карта сайта для AI-ассистентов
     lines = [f"# {SITE['name']}", "", f"> {SITE['tagline']}", "",
-             f"Автор: {SITE['author']}. Обновлено: {SITE['updated_human']}.", "", "## Страницы", ""]
+             f"Обновлено: {SITE['updated_human']}.", "", "## Страницы", ""]
     for p in PAGES:
         if p.get("sitemap", True):
             lines.append(f"- [{p['h1']}]({SITE['base']}{p['path']}): {p['description']}")
