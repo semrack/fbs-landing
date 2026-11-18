@@ -13,7 +13,7 @@ TOOLS_LINKS = ('<a href="/wildberries/logistika/">Логистика WB</a> · <
                '<a href="/sebestoimost/">Себестоимость</a> · <a href="/drr/">ДРР</a> · '
                '<a href="/nds-kalkulyator/">Калькулятор НДС</a> · <a href="/oborachivaemost/">Оборачиваемость</a>')
 NAV = [("/", "Калькулятор"), ("/wildberries/", "Wildberries"), ("/ozon/", "Ozon"),
-       ("/yandex-market/", "Яндекс Маркет"), ("/nalogi/", "Налоги"), ("/o-proekte/", "О проекте")]
+       ("/yandex-market/", "Яндекс Маркет"), ("/avito/", "Авито"), ("/nalogi/", "Налоги"), ("/o-proekte/", "О проекте")]
 
 
 def calc_block(mp, any_mp=False):
@@ -73,9 +73,16 @@ def calc_block(mp, any_mp=False):
 </section>'''
 
 
+def blockify(body):
+    """Каждый раздел (от H2 до следующего H2) — отдельная карточка."""
+    import re
+    parts = [x.strip() for x in re.split(r"(?=<h2[ >])", body) if x.strip()]
+    return "".join(f'<section class="blk">{x}</section>' for x in parts)
+
+
 def faq_html(faq):
     items = "".join(f"<details><summary>{q}</summary><p>{a}</p></details>" for q, a in faq)
-    return f'<h2 id="faq">Частые вопросы</h2>{items}'
+    return f'<section class="blk faq"><h2 id="faq">Частые вопросы</h2>{items}</section>'
 
 
 def strip_tags(s):
@@ -119,7 +126,7 @@ def page_html(p):
     script = '<script src="/assets/calc.js?v=1" defer></script>' if p.get("calc") else ""
     if p.get("tool"):
         calc = f'<section class="calc" id="tool" data-tool="{p["tool"]}" aria-label="Калькулятор">{p["tool_html"]}</section>'
-        script = '<script src="/assets/tools.js?v=1" defer></script>'
+        script = '<script src="/assets/tools.js?v=2" defer></script>'
         ld.append({"@context": "https://schema.org", "@type": "WebApplication", "name": p["app_name"],
                    "url": url, "applicationCategory": "BusinessApplication", "operatingSystem": "Any",
                    "inLanguage": "ru", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "RUB"}})
@@ -143,9 +150,9 @@ def page_html(p):
 <meta property="og:image" content="{SITE["base"]}/assets/og.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="/assets/style.css?v=1">
+<link rel="stylesheet" href="/assets/style.css?v=2">
 {lds}
-<script src="/assets/consent.js?v=1" defer></script>
+<script src="/assets/consent.js?v=2" defer></script>
 </head>
 <body>
 <header class="hdr"><div class="wrap"><a class="logo" href="/"><i aria-hidden="true"></i>{SITE["name"]}</a><nav class="nav" aria-label="Разделы">{nav}</nav></div></header>
@@ -154,7 +161,7 @@ def page_html(p):
 <section class="hero"><h1>{p["h1"]}</h1><p class="lead">{p["lead"]}</p>
 <p class="upd">Обновлено {SITE["updated_human"]} · <a href="/o-proekte/">Методика расчёта</a></p>{answer}</section>
 {calc}
-<article class="content narrow">{p["body"]}{faq}</article>
+<article class="content narrow">{blockify(p["body"])}{faq}</article>
 </div>
 </main>
 <footer class="ftr"><div class="wrap"><div>© 2026 {SITE["name"]}. Расчёты справочные и не заменяют тарифы маркетплейсов и консультацию бухгалтера.</div>

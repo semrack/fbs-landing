@@ -16,15 +16,15 @@
 <meta property="og:image" content="https://semrack.ru/assets/og.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="/assets/style.css?v=1">
+<link rel="stylesheet" href="/assets/style.css?v=2">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "@id": "https://semrack.ru/nacenka-i-marzha/#page", "url": "https://semrack.ru/nacenka-i-marzha/", "name": "Наценка, маржа и рентабельность: калькулятор и формулы", "description": "Калькулятор наценки и маржи: чем они отличаются, формулы, таблица перевода наценки в маржу, расчёт цены для нужной наценки или маржи. Для продавцов маркетплейсов.", "inLanguage": "ru", "dateModified": "2026-11-18", "datePublished": "2026-11-18", "isPartOf": {"@type": "WebSite", "name": "Калькулятор селлера", "url": "https://semrack.ru/"}, "publisher": {"@type": "Organization", "name": "Калькулятор селлера", "url": "https://semrack.ru/"}}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Главная", "item": "https://semrack.ru/"}, {"@type": "ListItem", "position": 2, "name": "Наценка и маржа", "item": "https://semrack.ru/nacenka-i-marzha/"}]}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Как посчитать рентабельность продаж?", "acceptedAnswer": {"@type": "Answer", "text": "Разделите чистую прибыль на выручку и умножьте на 100%. В отличие от маржи, здесь учитываются все расходы: комиссии, логистика, реклама и налоги."}}, {"@type": "Question", "name": "Как из наценки получить маржу?", "acceptedAnswer": {"@type": "Answer", "text": "Разделите наценку на 100% плюс наценку. Наценка 50% — это маржа 50 ÷ 150 = 33,3%."}}, {"@type": "Question", "name": "Может ли маржа быть больше 100%?", "acceptedAnswer": {"@type": "Answer", "text": "Нет. Маржа — доля прибыли в цене, она всегда меньше 100%. Больше 100% может быть только наценка."}}, {"@type": "Question", "name": "Что считать себестоимостью для маркетплейса?", "acceptedAnswer": {"@type": "Answer", "text": "Закупку товара, доставку до вашего склада или склада маркетплейса, упаковку, маркировку и фулфилмент. Комиссии и логистику маркетплейса учитывают отдельно."}}]}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Калькулятор наценки и маржи", "url": "https://semrack.ru/nacenka-i-marzha/", "applicationCategory": "BusinessApplication", "operatingSystem": "Any", "inLanguage": "ru", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "RUB"}}</script>
-<script src="/assets/consent.js?v=1" defer></script>
+<script src="/assets/consent.js?v=2" defer></script>
 </head>
 <body>
-<header class="hdr"><div class="wrap"><a class="logo" href="/"><i aria-hidden="true"></i>Калькулятор селлера</a><nav class="nav" aria-label="Разделы"><a href="/">Калькулятор</a><a href="/wildberries/">Wildberries</a><a href="/ozon/">Ozon</a><a href="/yandex-market/">Яндекс Маркет</a><a href="/nalogi/">Налоги</a><a href="/o-proekte/">О проекте</a></nav></div></header>
+<header class="hdr"><div class="wrap"><a class="logo" href="/"><i aria-hidden="true"></i>Калькулятор селлера</a><nav class="nav" aria-label="Разделы"><a href="/">Калькулятор</a><a href="/wildberries/">Wildberries</a><a href="/ozon/">Ozon</a><a href="/yandex-market/">Яндекс Маркет</a><a href="/avito/">Авито</a><a href="/nalogi/">Налоги</a><a href="/o-proekte/">О проекте</a></nav></div></header>
 <main>
 <div class="wrap"><nav class="crumbs" aria-label="Хлебные крошки"><a href="/">Главная</a> → <span>Наценка и маржа</span></nav>
 <section class="hero"><h1>Калькулятор наценки и маржи</h1><p class="lead">Посчитайте наценку и маржу, переведите одно в другое и найдите цену для нужного процента.</p>
@@ -40,13 +40,10 @@
 <div class="upd">Наценка</div><div class="big" id="o-markup">—</div>
 <div class="kpis"><div class="kpi"><b id="o-margin">—</b><span>маржа</span></div><div class="kpi"><b id="o-gross">—</b><span>разница цены и себестоимости</span></div><div class="kpi"><b id="o-price-markup">—</b><span>цена для нужной наценки</span></div><div class="kpi"><b id="o-price-margin">—</b><span>цена для нужной маржи</span></div></div>
 <p class="note">Здесь маржа — валовая: без комиссий маркетплейса, логистики и налогов. Чистую прибыль считает <a href="/">калькулятор юнит-экономики</a>.</p></div></section>
-<article class="content narrow">
-<h2>Чем наценка отличается от маржи?</h2>
+<article class="content narrow"><section class="blk"><h2>Чем наценка отличается от маржи?</h2>
 <p>Обе показывают разницу между ценой и себестоимостью, но в процентах от разного:</p>
 <div class="formula">Наценка = (Цена − Себестоимость) ÷ Себестоимость × 100%<br>Маржа = (Цена − Себестоимость) ÷ Цена × 100%</div>
-<p style="margin-top:1em">Товар за 500 ₽ продаёте за 1000 ₽: наценка 100%, а маржа 50%. Наценка может быть сколько угодно большой, маржа всегда меньше 100%.</p>
-
-<h2>Таблица перевода наценки в маржу</h2>
+<p style="margin-top:1em">Товар за 500 ₽ продаёте за 1000 ₽: наценка 100%, а маржа 50%. Наценка может быть сколько угодно большой, маржа всегда меньше 100%.</p></section><section class="blk"><h2>Таблица перевода наценки в маржу</h2>
 <div class="tblwrap"><table>
 <tr><th>Наценка</th><th>Маржа</th><th>Цена при себестоимости 500 ₽</th></tr>
 <tr><td>25%</td><td>20%</td><td>625 ₽</td></tr>
@@ -56,21 +53,16 @@
 <tr><td>200%</td><td>66,7%</td><td>1500 ₽</td></tr>
 <tr><td>300%</td><td>75%</td><td>2000 ₽</td></tr>
 </table></div>
-<div class="formula">Маржа = Наценка ÷ (100% + Наценка)<br>Наценка = Маржа ÷ (100% − Маржа)</div>
-
-<h2>Чем маржинальность отличается от рентабельности?</h2>
+<div class="formula">Маржа = Наценка ÷ (100% + Наценка)<br>Наценка = Маржа ÷ (100% − Маржа)</div></section><section class="blk"><h2>Чем маржинальность отличается от рентабельности?</h2>
 <p>Маржа выше считается до всех расходов, кроме себестоимости. <b>Рентабельность продаж</b> — доля <b>чистой</b> прибыли в выручке, после комиссий, логистики, рекламы и налогов:</p>
 <div class="formula">Рентабельность продаж = Чистая прибыль ÷ Выручка × 100%</div>
-<p style="margin-top:1em">У товара за 1000 ₽ с себестоимостью 500 ₽ маржа 50%, но после комиссии маркетплейса, логистики, рекламы и налогов рентабельность может оказаться 10–15% или ниже. Рентабельность продаж для товара на маркетплейсе показывает <a href="/">калькулятор юнит-экономики</a> — это строка «маржинальность» в результатах.</p>
-
-<h2>Какая наценка нужна на маркетплейсе?</h2>
+<p style="margin-top:1em">У товара за 1000 ₽ с себестоимостью 500 ₽ маржа 50%, но после комиссии маркетплейса, логистики, рекламы и налогов рентабельность может оказаться 10–15% или ниже. Рентабельность продаж для товара на маркетплейсе показывает <a href="/">калькулятор юнит-экономики</a> — это строка «маржинальность» в результатах.</p></section><section class="blk"><h2>Какая наценка нужна на маркетплейсе?</h2>
 <p>Больше, чем кажется. Комиссия, логистика с невыкупами, реклама и налоги вместе легко забирают 50–70% цены. Поэтому товар с наценкой 100% на маркетплейсе часто оказывается в нуле или в минусе. Многие селлеры ориентируются на наценку ×3 и выше к себестоимости, но точный ответ даёт только расчёт для вашей категории — в <a href="/">калькуляторе юнит-экономики</a> есть поле «Какую цену поставить для маржи».</p>
-<p class="src">Определения наценки и маржи — общепринятые в торговле; см., например, <a href="https://ru.wikipedia.org/wiki/Маржа" rel="nofollow">статью «Маржа» в Википедии</a>.</p>
-<h2 id="faq">Частые вопросы</h2><details><summary>Как посчитать рентабельность продаж?</summary><p>Разделите чистую прибыль на выручку и умножьте на 100%. В отличие от маржи, здесь учитываются все расходы: комиссии, логистика, реклама и налоги.</p></details><details><summary>Как из наценки получить маржу?</summary><p>Разделите наценку на 100% плюс наценку. Наценка 50% — это маржа 50 ÷ 150 = 33,3%.</p></details><details><summary>Может ли маржа быть больше 100%?</summary><p>Нет. Маржа — доля прибыли в цене, она всегда меньше 100%. Больше 100% может быть только наценка.</p></details><details><summary>Что считать себестоимостью для маркетплейса?</summary><p>Закупку товара, доставку до вашего склада или склада маркетплейса, упаковку, маркировку и фулфилмент. Комиссии и логистику маркетплейса учитывают отдельно.</p></details></article>
+<p class="src">Определения наценки и маржи — общепринятые в торговле; см., например, <a href="https://ru.wikipedia.org/wiki/Маржа" rel="nofollow">статью «Маржа» в Википедии</a>.</p></section><section class="blk faq"><h2 id="faq">Частые вопросы</h2><details><summary>Как посчитать рентабельность продаж?</summary><p>Разделите чистую прибыль на выручку и умножьте на 100%. В отличие от маржи, здесь учитываются все расходы: комиссии, логистика, реклама и налоги.</p></details><details><summary>Как из наценки получить маржу?</summary><p>Разделите наценку на 100% плюс наценку. Наценка 50% — это маржа 50 ÷ 150 = 33,3%.</p></details><details><summary>Может ли маржа быть больше 100%?</summary><p>Нет. Маржа — доля прибыли в цене, она всегда меньше 100%. Больше 100% может быть только наценка.</p></details><details><summary>Что считать себестоимостью для маркетплейса?</summary><p>Закупку товара, доставку до вашего склада или склада маркетплейса, упаковку, маркировку и фулфилмент. Комиссии и логистику маркетплейса учитывают отдельно.</p></details></section></article>
 </div>
 </main>
 <footer class="ftr"><div class="wrap"><div>© 2026 Калькулятор селлера. Расчёты справочные и не заменяют тарифы маркетплейсов и консультацию бухгалтера.</div>
 <div><a href="/wildberries/logistika/">Логистика WB</a> · <a href="/vykup/">Процент выкупа</a> · <a href="/nacenka-i-marzha/">Наценка и маржа</a> · <a href="/fbo-ili-fbs/">FBO или FBS</a> · <a href="/sebestoimost/">Себестоимость</a> · <a href="/drr/">ДРР</a> · <a href="/nds-kalkulyator/">Калькулятор НДС</a> · <a href="/oborachivaemost/">Оборачиваемость</a> · <a href="/o-proekte/">О проекте и методика</a> · <a href="/politika/">Политика конфиденциальности</a> · <a href="#" data-cookie-settings>Настройки cookie</a></div></div></footer>
-<script src="/assets/tools.js?v=1" defer></script>
+<script src="/assets/tools.js?v=2" defer></script>
 </body>
 </html>

@@ -16,15 +16,15 @@
 <meta property="og:image" content="https://semrack.ru/assets/og.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="/assets/style.css?v=1">
+<link rel="stylesheet" href="/assets/style.css?v=2">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "@id": "https://semrack.ru/vykup/#page", "url": "https://semrack.ru/vykup/", "name": "Процент выкупа на маркетплейсе: калькулятор и формула", "description": "Как рассчитать процент выкупа на Wildberries и Ozon и сколько стоят невыкупы: логистика на одну продажу при разном выкупе, таблица и советы, как поднять выкуп.", "inLanguage": "ru", "dateModified": "2026-11-18", "datePublished": "2026-11-18", "isPartOf": {"@type": "WebSite", "name": "Калькулятор селлера", "url": "https://semrack.ru/"}, "publisher": {"@type": "Organization", "name": "Калькулятор селлера", "url": "https://semrack.ru/"}}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Главная", "item": "https://semrack.ru/"}, {"@type": "ListItem", "position": 2, "name": "Процент выкупа", "item": "https://semrack.ru/vykup/"}]}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Какой процент выкупа считается нормальным?", "acceptedAnswer": {"@type": "Answer", "text": "Зависит от категории. В электронике и товарах для дома выкуп обычно высокий — 90% и выше. В одежде и обуви, где покупатели примеряют несколько размеров, — заметно ниже. Сравнивайте свой выкуп с конкурентами в той же категории."}}, {"@type": "Question", "name": "Где посмотреть процент выкупа?", "acceptedAnswer": {"@type": "Answer", "text": "В аналитике кабинета продавца: на Wildberries — в отчётах по продажам и в карточке товара, на Ozon и Маркете — в отчётах по заказам и возвратам."}}, {"@type": "Question", "name": "Входят ли возвраты в процент невыкупа?", "acceptedAnswer": {"@type": "Answer", "text": "Для расчёта логистики — да: за возврат вы тоже платите обратную доставку. Поэтому в поле «Выкуплено» указывайте заказы, которые покупатель забрал и не вернул."}}]}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Калькулятор процента выкупа", "url": "https://semrack.ru/vykup/", "applicationCategory": "BusinessApplication", "operatingSystem": "Any", "inLanguage": "ru", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "RUB"}}</script>
-<script src="/assets/consent.js?v=1" defer></script>
+<script src="/assets/consent.js?v=2" defer></script>
 </head>
 <body>
-<header class="hdr"><div class="wrap"><a class="logo" href="/"><i aria-hidden="true"></i>Калькулятор селлера</a><nav class="nav" aria-label="Разделы"><a href="/">Калькулятор</a><a href="/wildberries/">Wildberries</a><a href="/ozon/">Ozon</a><a href="/yandex-market/">Яндекс Маркет</a><a href="/nalogi/">Налоги</a><a href="/o-proekte/">О проекте</a></nav></div></header>
+<header class="hdr"><div class="wrap"><a class="logo" href="/"><i aria-hidden="true"></i>Калькулятор селлера</a><nav class="nav" aria-label="Разделы"><a href="/">Калькулятор</a><a href="/wildberries/">Wildberries</a><a href="/ozon/">Ozon</a><a href="/yandex-market/">Яндекс Маркет</a><a href="/avito/">Авито</a><a href="/nalogi/">Налоги</a><a href="/o-proekte/">О проекте</a></nav></div></header>
 <main>
 <div class="wrap"><nav class="crumbs" aria-label="Хлебные крошки"><a href="/">Главная</a> → <span>Процент выкупа</span></nav>
 <section class="hero"><h1>Процент выкупа: калькулятор и цена невыкупов</h1><p class="lead">Посчитайте процент выкупа и узнайте, во сколько вам обходятся невыкупленные заказы.</p>
@@ -40,17 +40,12 @@
 <div class="upd">Процент выкупа</div><div class="big" id="o-buyout">—</div>
 <div class="kpis"><div class="kpi"><b id="o-per-sale">—</b><span>логистика на одну продажу</span></div><div class="kpi"><b id="o-loss">—</b><span>переплата из-за невыкупов</span></div><div class="kpi"><b id="o-month">—</b><span>потрачено на невыкупы за период</span></div></div>
 <div class="tblwrap"><table id="o-table"></table></div></div></section>
-<article class="content narrow">
-<h2>Как рассчитать процент выкупа?</h2>
+<article class="content narrow"><section class="blk"><h2>Как рассчитать процент выкупа?</h2>
 <div class="formula">Процент выкупа = Выкупленные заказы ÷ Все заказы × 100%</div>
-<p style="margin-top:1em">В знаменатель входят все заказы за период: выкупленные, отказы в пункте выдачи и возвраты. Если 100 человек заказали товар, а забрали и оставили себе 70, выкуп — 70%.</p>
-
-<h2>Сколько стоит каждый невыкуп</h2>
+<p style="margin-top:1em">В знаменатель входят все заказы за период: выкупленные, отказы в пункте выдачи и возвраты. Если 100 человек заказали товар, а забрали и оставили себе 70, выкуп — 70%.</p></section><section class="blk"><h2>Сколько стоит каждый невыкуп</h2>
 <p>За невыкупленный товар продавец платит дважды: за доставку к покупателю и за возврат на склад. Эти деньги нужно распределить на проданные единицы:</p>
 <div class="formula">Логистика на продажу = Доставка + (1 − Выкуп) ÷ Выкуп × (Доставка + Возврат)</div>
-<p style="margin-top:1em">При доставке 80 ₽, возврате 50 ₽ и выкупе 70% логистика на одну продажу — около 136 ₽, в 1,7 раза больше тарифа. При выкупе 30% — уже 383 ₽. Поэтому в одежде и обуви, где выкуп низкий, логистика часто съедает всю маржу.</p>
-
-<h2>Как поднять процент выкупа?</h2>
+<p style="margin-top:1em">При доставке 80 ₽, возврате 50 ₽ и выкупе 70% логистика на одну продажу — около 136 ₽, в 1,7 раза больше тарифа. При выкупе 30% — уже 383 ₽. Поэтому в одежде и обуви, где выкуп низкий, логистика часто съедает всю маржу.</p></section><section class="blk"><h2>Как поднять процент выкупа?</h2>
 <ul>
 <li>Подробная размерная сетка и замеры на модели — главный способ снизить возвраты в одежде.</li>
 <li>Фото, которые честно показывают цвет, фактуру и размер.</li>
@@ -58,12 +53,11 @@
 <li>Быстрая доставка: чем дольше товар идёт, тем выше шанс, что покупатель передумает.</li>
 </ul>
 <p>Подставьте свой процент выкупа в <a href="/">калькулятор юнит-экономики</a>, чтобы увидеть, как он влияет на прибыль с продажи.</p>
-<p class="src">Свой процент выкупа и тарифы обратной логистики смотрите в кабинете продавца: <a href="https://seller.wildberries.ru/" rel="nofollow">Wildberries</a>, <a href="https://seller.ozon.ru/" rel="nofollow">Ozon</a>, <a href="https://partner.market.yandex.ru/" rel="nofollow">Яндекс Маркет</a>.</p>
-<h2 id="faq">Частые вопросы</h2><details><summary>Какой процент выкупа считается нормальным?</summary><p>Зависит от категории. В электронике и товарах для дома выкуп обычно высокий — 90% и выше. В одежде и обуви, где покупатели примеряют несколько размеров, — заметно ниже. Сравнивайте свой выкуп с конкурентами в той же категории.</p></details><details><summary>Где посмотреть процент выкупа?</summary><p>В аналитике кабинета продавца: на Wildberries — в отчётах по продажам и в карточке товара, на Ozon и Маркете — в отчётах по заказам и возвратам.</p></details><details><summary>Входят ли возвраты в процент невыкупа?</summary><p>Для расчёта логистики — да: за возврат вы тоже платите обратную доставку. Поэтому в поле «Выкуплено» указывайте заказы, которые покупатель забрал и не вернул.</p></details></article>
+<p class="src">Свой процент выкупа и тарифы обратной логистики смотрите в кабинете продавца: <a href="https://seller.wildberries.ru/" rel="nofollow">Wildberries</a>, <a href="https://seller.ozon.ru/" rel="nofollow">Ozon</a>, <a href="https://partner.market.yandex.ru/" rel="nofollow">Яндекс Маркет</a>.</p></section><section class="blk faq"><h2 id="faq">Частые вопросы</h2><details><summary>Какой процент выкупа считается нормальным?</summary><p>Зависит от категории. В электронике и товарах для дома выкуп обычно высокий — 90% и выше. В одежде и обуви, где покупатели примеряют несколько размеров, — заметно ниже. Сравнивайте свой выкуп с конкурентами в той же категории.</p></details><details><summary>Где посмотреть процент выкупа?</summary><p>В аналитике кабинета продавца: на Wildberries — в отчётах по продажам и в карточке товара, на Ozon и Маркете — в отчётах по заказам и возвратам.</p></details><details><summary>Входят ли возвраты в процент невыкупа?</summary><p>Для расчёта логистики — да: за возврат вы тоже платите обратную доставку. Поэтому в поле «Выкуплено» указывайте заказы, которые покупатель забрал и не вернул.</p></details></section></article>
 </div>
 </main>
 <footer class="ftr"><div class="wrap"><div>© 2026 Калькулятор селлера. Расчёты справочные и не заменяют тарифы маркетплейсов и консультацию бухгалтера.</div>
 <div><a href="/wildberries/logistika/">Логистика WB</a> · <a href="/vykup/">Процент выкупа</a> · <a href="/nacenka-i-marzha/">Наценка и маржа</a> · <a href="/fbo-ili-fbs/">FBO или FBS</a> · <a href="/sebestoimost/">Себестоимость</a> · <a href="/drr/">ДРР</a> · <a href="/nds-kalkulyator/">Калькулятор НДС</a> · <a href="/oborachivaemost/">Оборачиваемость</a> · <a href="/o-proekte/">О проекте и методика</a> · <a href="/politika/">Политика конфиденциальности</a> · <a href="#" data-cookie-settings>Настройки cookie</a></div></div></footer>
-<script src="/assets/tools.js?v=1" defer></script>
+<script src="/assets/tools.js?v=2" defer></script>
 </body>
 </html>

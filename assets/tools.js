@@ -114,6 +114,21 @@
     set('o-store', isFinite(d) ? rub(n('t-store') * d, 2) : '—');
   };
 
+  // Авито: комиссия Авито Доставки, продвижение, тариф
+  TOOLS['avito'] = function () {
+    var P = n('t-price'), C = n('t-cost'), sales = Math.max(n('t-sales'), 1);
+    var fee = Math.max(P * n('t-fee') / 100, n('t-min'));
+    var promo = n('t-promo') / sales, tariff = n('t-tariff') / sales;
+    var other = n('t-ship') + n('t-pack');
+    var tax = P * n('t-tax') / 100;
+    var profit = P - C - fee - promo - tariff - other - tax;
+    set('o-profit', rub(profit), 'big ' + (profit >= 0 ? 'pos' : 'neg'));
+    set('o-margin', P > 0 ? pct(profit / P * 100) : '—');
+    set('o-fee', rub(fee) + (P > 0 ? ' · ' + pct(fee / P * 100) : ''));
+    set('o-promo', rub(promo + tariff));
+    set('o-month', rub(profit * sales));
+  };
+
   var fn = TOOLS[root.getAttribute('data-tool')];
   if (!fn) return;
   root.addEventListener('input', fn);

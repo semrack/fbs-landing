@@ -38,10 +38,9 @@
     var d = document.createElement('div');
     d.id = 'cc'; d.setAttribute('role', 'dialog'); d.setAttribute('aria-label', 'Согласие на cookie');
     d.innerHTML =
-      '<p>Мы используем cookie и сервис Яндекс Метрика, чтобы считать посещения и улучшать сайт. ' +
-      'Подробнее — в <a href="/politika/">политике обработки персональных данных</a>. ' +
-      'Нажимая «Понятно», вы даёте <a href="/soglasie/">согласие на обработку персональных данных</a>. ' +
-      'Если не хотите, чтобы данные собирались, нажмите «Отключить».</p>' +
+      '<p>Мы используем cookie и Яндекс Метрику для статистики посещений. Нажимая «Понятно», вы даёте ' +
+      '<a href="/soglasie/">согласие на обработку данных</a> по <a href="/politika/">политике конфиденциальности</a>. ' +
+      'Не согласны — нажмите «Отключить».</p>' +
       '<div class="cc-b"><button type="button" data-v="yes">Понятно</button><button type="button" data-v="no" class="cc-no">Отключить</button></div>';
     d.addEventListener('click', function (e) {
       var v = e.target.getAttribute && e.target.getAttribute('data-v');
