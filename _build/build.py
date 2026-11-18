@@ -8,6 +8,28 @@ from pages import PAGES, SITE, UPDATED_ISO
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+GTM_ID = "GTM-5TKD86PR"
+GTM_HEAD = ("<!-- Google Tag Manager --><script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':"
+            "new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),"
+            "dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;"
+            f"f.parentNode.insertBefore(j,f);}})(window,document,'script','dataLayer','{GTM_ID}');</script><!-- End Google Tag Manager -->")
+GTM_BODY = (f'<!-- Google Tag Manager (noscript) --><noscript><iframe src="https://www.googletagmanager.com/ns.html?id={GTM_ID}" '
+            'height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript><!-- End Google Tag Manager (noscript) -->')
+YM_HEAD = """<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=114271586', 'ym');
+
+    ym(114271586, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+</script>
+<!-- /Yandex.Metrika counter -->"""
+YM_BODY = '<noscript><div><img src="https://mc.yandex.ru/watch/114271586" style="position:absolute; left:-9999px;" alt="" /></div></noscript>'
+TOOLS_LINKS = ('<a href="/wildberries/logistika/">Логистика WB</a> · <a href="/vykup/">Процент выкупа</a> · '
+               '<a href="/nacenka-i-marzha/">Наценка и маржа</a> · <a href="/fbo-ili-fbs/">FBO или FBS</a>')
 NAV = [("/", "Калькулятор"), ("/wildberries/", "Wildberries"), ("/ozon/", "Ozon"),
        ("/yandex-market/", "Яндекс Маркет"), ("/nalogi/", "Налоги"), ("/o-proekte/", "О проекте")]
 
@@ -90,11 +112,13 @@ def page_html(p):
         "publisher": {"@type": "Organization", "name": SITE["name"], "url": SITE["base"] + "/"},
     }]
     if p["path"] != "/":
-        crumbs = (f'<nav class="crumbs" aria-label="Хлебные крошки"><a href="/">Главная</a> → '
-                  f'<span>{p["crumb"]}</span></nav>')
+        trail = [("/", "Главная")] + ([p["parent"]] if p.get("parent") else []) + [(p["path"], p["crumb"])]
+        crumbs = ('<nav class="crumbs" aria-label="Хлебные крошки">'
+                  + " → ".join(f'<a href="{h}">{n}</a>' for h, n in trail[:-1])
+                  + f' → <span>{p["crumb"]}</span></nav>')
         ld.append({"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
-            {"@type": "ListItem", "position": 1, "name": "Главная", "item": SITE["base"] + "/"},
-            {"@type": "ListItem", "position": 2, "name": p["crumb"], "item": url}]})
+            {"@type": "ListItem", "position": i + 1, "name": n, "item": SITE["base"] + h}
+            for i, (h, n) in enumerate(trail)]})
     if p.get("calc"):
         ld.append({"@context": "https://schema.org", "@type": "WebApplication", "name": p["app_name"],
                    "url": url, "applicationCategory": "BusinessApplication", "operatingSystem": "Any",
@@ -111,6 +135,12 @@ def page_html(p):
     answer = f'<div class="answer"><strong>Коротко</strong>{p["answer"]}</div>' if p.get("answer") else ""
     calc = calc_block(p["calc"], p.get("calc_any", False)) if p.get("calc") else ""
     script = '<script src="/assets/calc.js?v=1" defer></script>' if p.get("calc") else ""
+    if p.get("tool"):
+        calc = f'<section class="calc" id="tool" data-tool="{p["tool"]}" aria-label="Калькулятор">{p["tool_html"]}</section>'
+        script = '<script src="/assets/tools.js?v=1" defer></script>'
+        ld.append({"@context": "https://schema.org", "@type": "WebApplication", "name": p["app_name"],
+                   "url": url, "applicationCategory": "BusinessApplication", "operatingSystem": "Any",
+                   "inLanguage": "ru", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "RUB"}})
     faq = faq_html(p["faq"]) if p.get("faq") else ""
     lds = "\n".join(f'<script type="application/ld+json">{json.dumps(x, ensure_ascii=False)}</script>' for x in ld)
     return f'''<!doctype html>
@@ -133,8 +163,11 @@ def page_html(p):
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/assets/style.css?v=1">
 {lds}
+{GTM_HEAD}
+{YM_HEAD}
 </head>
 <body>
+{GTM_BODY}{YM_BODY}
 <header class="hdr"><div class="wrap"><a class="logo" href="/"><i aria-hidden="true"></i>{SITE["name"]}</a><nav class="nav" aria-label="Разделы">{nav}</nav></div></header>
 <main>
 <div class="wrap">{crumbs}
@@ -145,7 +178,7 @@ def page_html(p):
 </div>
 </main>
 <footer class="ftr"><div class="wrap"><div>© 2026 {SITE["name"]}. Расчёты справочные и не заменяют тарифы маркетплейсов и консультацию бухгалтера.</div>
-<div><a href="/o-proekte/">О проекте и методика</a></div></div></footer>
+<div>{TOOLS_LINKS} · <a href="/o-proekte/">О проекте и методика</a></div></div></footer>
 {script}
 </body>
 </html>
